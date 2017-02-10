@@ -1,4 +1,4 @@
-define(['exports', './AbstractWidgetController'], function (exports, _AbstractWidgetController) {
+define(['exports', './AbstractWidgetController.js'], function (exports, _AbstractWidgetController) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

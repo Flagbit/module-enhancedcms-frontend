@@ -1,4 +1,4 @@
-define(['exports', './PanelController'], function (exports, _PanelController2) {
+define(['exports', './PanelController.js'], function (exports, _PanelController2) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

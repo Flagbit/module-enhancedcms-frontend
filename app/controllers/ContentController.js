@@ -1,4 +1,4 @@
-define(["exports", "jquery", "prototype", "../configs/CONSTANTS", "../classes/Widget", "../classes/Container", "../classes/Carousel", "../classes/Toolbar", "../classes/Utils", "jquery/ui", "jquery/jquery-storageapi"], function (exports, _jquery, _prototype, _CONSTANTS, _Widget, _Container, _Carousel, _Toolbar, _Utils) {
+define(["exports", "jquery", "prototype", "../configs/CONSTANTS.js", "../classes/Widget.js", "../classes/Container.js", "../classes/Carousel.js", "../classes/Toolbar.js", "../classes/Utils", "jquery/ui", "jquery/jquery-storageapi"], function (exports, _jquery, _prototype, _CONSTANTS, _Widget, _Container, _Carousel, _Toolbar, _Utils) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {

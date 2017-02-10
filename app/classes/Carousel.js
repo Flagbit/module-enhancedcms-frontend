@@ -1,4 +1,4 @@
-define(['exports', './Widget'], function (exports, _Widget2) {
+define(['exports', './Widget.js'], function (exports, _Widget2) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

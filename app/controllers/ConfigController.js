@@ -1,4 +1,4 @@
-define(['exports', 'jquery', '../classes/Utils', './PanelController', 'Flagbit_EnhancedCMS/js/jsonform/config'], function (exports, _jquery, _Utils, _PanelController2) {
+define(['exports', 'jquery', '../classes/Utils.js', './PanelController.js', 'Flagbit_EnhancedCMS/js/jsonform/config'], function (exports, _jquery, _Utils, _PanelController2) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

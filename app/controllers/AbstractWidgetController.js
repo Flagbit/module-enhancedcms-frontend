@@ -1,4 +1,4 @@
-define(['exports', 'jquery', '../classes/Utils'], function (exports, _jquery, _Utils) {
+define(['exports', 'jquery', '../classes/Utils.js'], function (exports, _jquery, _Utils) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

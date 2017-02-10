@@ -1,4 +1,4 @@
-define(['exports', 'jquery', './PanelController'], function (exports, _jquery, _PanelController2) {
+define(['exports', 'jquery', './PanelController.js'], function (exports, _jquery, _PanelController2) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

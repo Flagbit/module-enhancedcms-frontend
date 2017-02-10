@@ -1,4 +1,4 @@
-define(['exports', './WidgetController', 'jquery'], function (exports, _WidgetController2, _jquery) {
+define(['exports', './WidgetController.js', 'jquery'], function (exports, _WidgetController2, _jquery) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
