@@ -1,4 +1,4 @@
-define(["exports", "jquery", "prototype", "../configs/CONSTANTS.js", "../classes/Widget.js", "../classes/Container.js", "../classes/Carousel.js", "../classes/Toolbar.js", "../classes/Utils", "jquery/ui", "jquery/jquery-storageapi"], function (exports, _jquery, _prototype, _CONSTANTS, _Widget, _Container, _Carousel, _Toolbar, _Utils) {
+define(["exports", "jquery", "prototype", "../configs/CONSTANTS.js", "../classes/Widget.js", "../classes/Container.js", "../classes/Carousel.js", "../classes/Toolbar.js", "jquery/ui", "jquery/jquery-storageapi"], function (exports, _jquery, _prototype, _CONSTANTS, _Widget, _Container, _Carousel, _Toolbar) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -16,8 +16,6 @@ define(["exports", "jquery", "prototype", "../configs/CONSTANTS.js", "../classes
     var _Carousel2 = _interopRequireDefault(_Carousel);
 
     var _Toolbar2 = _interopRequireDefault(_Toolbar);
-
-    var _Utils2 = _interopRequireDefault(_Utils);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
