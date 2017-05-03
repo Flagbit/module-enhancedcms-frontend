@@ -137,8 +137,13 @@ define(['exports', 'jquery', 'ckeditor/ckeditor', './configs/CONSTANTS.min.js', 
                 }
             };
         });
-
-        angular.bootstrap(document.getElementById('ecms-builder'), ['enhancedcms']);
+        var rootElement = document.getElementById('ecms-builder');
+        if (!rootElement.injector()) {
+            console.log('NOT BOOTSTRAPPED');
+        } else {
+            console.log('ALREADY BOOTSTRAPPED');
+        }
+        angular.bootstrap(rootElement, ['enhancedcms']);
     }
 
     window.ECMS_addLinks = function () {
