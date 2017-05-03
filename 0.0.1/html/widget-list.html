@@ -1,0 +1,11 @@
+<div class="ecms-widget-list" ng-cloak><div id="ecms-widgets"><div layout="column" ng-repeat="category in categories"><div ng-class="{'ecms-widget-list-category': true, 'expanded': $parent.expandedCategory == category.value}"><div class="ecms-widget-list-category-title" ng-click="$parent.expandedCategory = ($parent.expandedCategory == category.value ? null : category.value)"><md-truncate flex><div class="ecms-widget-list-category-title-count">{[{ category.count }]}</div><h4>{[{ category.title | translate }]}</h4></md-truncate></div><div class="ecms-widget-list-category-container"><div ng-show="$parent.expandedCategory == category.value" class="ecms-widget-list-widgets"><div class="ecms-widget-list-widget" ng-repeat="widget in widgets | inArray:category.value:'categories'" data-widget="{[{widget.getName()}]}" data-drag="true" jqyoui-draggable="{
+                              index: {[{$index}]},
+                              animate: true,
+                              placeholder: 'keep',
+                              onStart: 'ctrl.onWidgetDragStart()'}" data-jqyoui-options="{
+                              revert: 'invalid',
+                              helper: 'clone',
+                              appendTo: 'body',
+                              containment: 'window',
+                              scroll: false,
+                              connectToSortable: '#ecms-page-content,.ecms-container-items'}" ng-model="dragWidget"><div class="ecms-widget-list-widget-title-container" ng-init="$parent.preview = (widgets.length == 1 ? widget.getImage() : null)" ng-mouseenter="widgets.length != 1 ? $parent.preview = widget.getImage() : false" ng-mouseleave="widgets.length != 1 ? $parent.preview = null : false"><h4 ng-if="widget.getTitle()">{[{ widget.getTitle() }]}</h4></div></div></div><div ng-if="preview" class="ecms-widget-list-widgets-preview"><div class="ecms-widget-list-widgets-preview-container"><img ng-src="{[{preview}]}"></div></div></div></div></div></div></div>
