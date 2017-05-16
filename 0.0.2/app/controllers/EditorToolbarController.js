@@ -135,6 +135,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         }, {
             key: 'tidyUpElement',
             value: function tidyUpElement(el) {
+                el.find('.carousel .carousel-item').attr('style', '');
                 el.find('.md-panel-outer-wrapper, .ecms-tidyup').remove();
                 el.find('*').not('iframe, iframe *').each(function (idx, currentEl) {
                     var $currentEl = (0, _jquery2.default)(currentEl);

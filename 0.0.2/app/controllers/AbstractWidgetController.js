@@ -103,6 +103,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             value: function updateWidget() {
                 var apply = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
+                console.log();
                 if (apply) {
                     this.$rootScope.$safeApply(this.$scope);
                 }
@@ -133,9 +134,9 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
 
                     _this2.$scope.$element.fadeIn();
 
-                    _this2.$scope.$emit('stopProcess');
-
                     deferred.resolve();
+
+                    _this2.$scope.$emit('stopProcess');
                 });
 
                 this.$scope.loadPromise = deferred.promise;
@@ -350,11 +351,14 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'beforePagePreview',
             value: function beforePagePreview() {
+                console.log('beofre page preview');
                 this.removeToolbar();
             }
         }, {
             key: 'afterPagePreview',
-            value: function afterPagePreview() {}
+            value: function afterPagePreview() {
+                console.log('page preview');
+            }
         }, {
             key: 'beforePageSave',
             value: function beforePageSave() {
@@ -366,17 +370,20 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'onDataChanged',
             value: function onDataChanged(event, mass) {
+                console.log('data changd');
                 this.$scope.data = _jquery2.default.extend({}, this.$scope.data, mass.data);
             }
         }, {
             key: 'startProcess',
             value: function startProcess() {
+                console.log('start process');
                 this.$scope.inProcess = true;
                 this.$rootScope.$safeApply(this.$scope);
             }
         }, {
             key: 'stopProcess',
             value: function stopProcess() {
+                console.log('stopProcess');
                 this.$scope.inProcess = false;
                 this.$rootScope.$safeApply(this.$scope);
             }

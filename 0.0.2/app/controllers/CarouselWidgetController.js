@@ -65,7 +65,7 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var TEMPLATE_SLIDE = '<div class="carousel-item" ecms-editor>\n  <picture>\n    <img class="d-block img-fluid" data-src="holder.js/800x400" />\n  </picture>\n  <div class="carousel-caption d-none d-md-block">\n    <h3>Carousel Caption</h3>\n  </div>\n</div>';
+    var TEMPLATE_SLIDE = '<div class="carousel-item" ecms-editor>\n  <img class="d-block img-fluid" data-src="holder.js/2000x400" />\n  <div class="carousel-caption-bottom d-none d-md-block">\n    <h3>Carousel Caption</h3>\n  </div>\n</div>';
 
     var CarouselController = function (_WidgetController) {
         _inherits(CarouselController, _WidgetController);
@@ -75,17 +75,17 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
 
             var _this = _possibleConstructorReturn(this, (CarouselController.__proto__ || Object.getPrototypeOf(CarouselController)).apply(this, arguments));
 
-            console.log('CONSTRUCT CAROUSEL WIDGET', $element);
+            console.log('CONSTRUCT CAROUSEL WIDGET');
             _this.$compile = $compile;
             _this.$scope = $scope;
             _this.$element = $element;
 
+            var lastSlide = $element.find('.carousel-item').last();
+            _this.insertAddSlideBtn(lastSlide);
+
             _this.$scope.$on('stopProcess', function () {
-                _this.lastSlide = $element.find('.carousel-item').last();
-                _this.insertAddSlideBtn(_this.lastSlide);
-                //console.log('#2', this.lastSlide[0].querySelector('img'))
                 _Holder2.default.run({
-                    images: _this.lastSlide.find('img')[0]
+                    images: document.getElementById($element.attr('id')).querySelectorAll('img')
                 });
             });
 
@@ -113,11 +113,13 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             }
         }, {
             key: 'insertAddSlideBtn',
-            value: function insertAddSlideBtn() {
+            value: function insertAddSlideBtn(lastSlide) {
+                console.log('sdfghj', lastSlide);
                 //let btn = $.parseHTML('<md-button class="md-fab md-primary ecms-ui" ng-click="ctrl.addSlide()" aria-label="Add Slide"><md-icon md-font-icon="mdi" class="mdi-plus"></md-icon></md-button>');
                 var btn = _jquery2.default.parseHTML('<button class="ecms-ui" ng-click="ctrl.addSlide()">Add Slide</button>');
+                console.log('BTN', btn);
                 //$(btn).click( this.addSlide.apply(this, $lastSlide) );
-                (0, _jquery2.default)(btn).insertAfter(this.lastSlide);
+                (0, _jquery2.default)(btn).insertAfter(lastSlide);
             }
         }]);
 
