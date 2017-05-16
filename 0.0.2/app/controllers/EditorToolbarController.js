@@ -133,9 +133,23 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 window.open(document.location.origin + document.location.pathname, '_blank');
             }
         }, {
+            key: 'tidyUpCarousel',
+            value: function tidyUpCarousel(el) {
+                el.find('.carousel .carousel-item').attr('style', '');
+                el.find('.carousel .carousel-item img').each(function (index, el) {
+                    var $el = $(el);
+                    var stillPlaceholder = $el.src.slice(0, 5) === 'data:';
+                    if (!stillPlaceholder) {
+                        el.removeAttribute('data-src');
+                        el.removeAttribute('data-holder-rendered');
+                        el.removeAttribute('style');
+                    }
+                });
+            }
+        }, {
             key: 'tidyUpElement',
             value: function tidyUpElement(el) {
-                el.find('.carousel .carousel-item').attr('style', '');
+                this.tidyUpCarousel(el);
                 el.find('.md-panel-outer-wrapper, .ecms-tidyup').remove();
                 el.find('*').not('iframe, iframe *').each(function (idx, currentEl) {
                     var $currentEl = (0, _jquery2.default)(currentEl);
