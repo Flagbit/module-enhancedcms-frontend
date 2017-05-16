@@ -136,16 +136,14 @@ define(['exports', 'jquery'], function (exports, _jquery) {
             key: 'tidyUpCarousel',
             value: function tidyUpCarousel(el) {
                 el.find('.carousel .carousel-item').attr('style', '');
-                /*
-                el.find('.carousel .carousel-item img[data-widget]').each((index, el) => {
-                    let stillPlaceholder = el.src.slice(0,5) === 'data:';
+                el.find('.carousel .carousel-item img[data-widget]').each(function (index, el) {
+                    var stillPlaceholder = el.src.slice(0, 5) === 'data:';
                     if (!stillPlaceholder) {
-                        el.removeAttribute('data-src');
-                        el.removeAttribute('data-holder-rendered');
+                        //el.removeAttribute('data-src');
+                        //el.removeAttribute('data-holder-rendered');
                         el.removeAttribute('style');
                     }
                 });
-                */
             }
         }, {
             key: 'tidyUpElement',
