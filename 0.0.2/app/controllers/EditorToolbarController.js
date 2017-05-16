@@ -139,7 +139,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el.find('.carousel .carousel-item img[data-widget]').each(function (index, el) {
                     var stillPlaceholder = el.src.slice(0, 5) === 'data:';
                     if (!stillPlaceholder) {
-                        //el.removeAttribute('data-src');
+                        el.removeAttribute('data-src');
                         //el.removeAttribute('data-holder-rendered');
                         el.removeAttribute('style');
                     }
