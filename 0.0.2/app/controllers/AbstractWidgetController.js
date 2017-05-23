@@ -101,9 +101,15 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         _createClass(AbstractWidgetController, [{
             key: 'updateWidget',
             value: function updateWidget() {
+                var _this2 = this;
+
                 var apply = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
-                console.log();
+                // Add Timeout because we don't know when exactly the CKEditor is instantiaded
+                // -> if you want to try yourself, see EditorController.js:136
+                setTimeout(function () {
+                    _this2.compileAngularComponents();
+                }, 1000);
                 if (apply) {
                     this.$rootScope.$safeApply(this.$scope);
                 }
@@ -111,7 +117,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'loadWidget',
             value: function loadWidget() {
-                var _this2 = this;
+                var _this3 = this;
 
                 var deferred = this.$q.defer();
 
@@ -119,24 +125,27 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
 
                 this.clearChildren();
                 this.$scope.$widget.getHtml().then(function (html) {
-                    _this2.$scope.widgetId = 'ecms-widget-' + _UtilsMin2.default.generateWidgetId(10);
-                    _this2.$scope.$element.attr('id', _this2.$scope.widgetId).attr('ng-click', 'ctrl.click($event)').attr('ng-attr-data-widget-data', '{[{data}]}');
-                    _this2.$scope.$element.addClass('ecms-widget').addClass('ecms-widget-' + _this2.$scope.$widget.getName());
+                    _this3.$scope.widgetId = 'ecms-widget-' + _UtilsMin2.default.generateWidgetId(10);
+                    _this3.$scope.$element.attr('id', _this3.$scope.widgetId).attr('ng-click', 'ctrl.click($event)').attr('ng-attr-data-widget-data', '{[{data}]}');
+                    _this3.$scope.$element.addClass('ecms-widget').addClass('ecms-widget-' + _this3.$scope.$widget.getName());
 
-                    _this2.$scope.$element.hide();
-                    _this2.$scope.$element.removeClass('ecms-widget-initialize');
-                    _this2.$scope.$element.append(_this2.formatWidgetHtml(html, _this2.$scope.widgetId));
+                    _this3.$scope.$element.hide();
+                    _this3.$scope.$element.removeClass('ecms-widget-initialize');
 
-                    var newElement = _this2.$compile(_this2.$scope.$element.prop('outerHTML'))(_this2.$scope);
+                    var hasUiElement = _this3.$scope.$element.find('.ecms-ui')[0];
+                    var formattedWidget = _this3.formatWidgetHtml(html, _this3.$scope.widgetId);
+                    _this3.$scope.$element.append(formattedWidget);
 
-                    _this2.$scope.$element.replaceWith(newElement);
-                    _this2.$scope.$element = newElement;
+                    var newElement = _this3.$compile(_this3.$scope.$element.prop('outerHTML'))(_this3.$scope);
 
-                    _this2.$scope.$element.fadeIn();
+                    _this3.$scope.$element.replaceWith(newElement);
+                    _this3.$scope.$element = newElement;
+
+                    _this3.$scope.$element.fadeIn();
 
                     deferred.resolve();
 
-                    _this2.$scope.$emit('stopProcess');
+                    _this3.$scope.$emit('stopProcess');
                 });
 
                 this.$scope.loadPromise = deferred.promise;
@@ -180,11 +189,12 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'clearChildren',
             value: function clearChildren() {
-                this.$scope.$element.children().not('.ecms-widget-toolbar').remove();
+                this.$scope.$element.children().not('.ecms-widget-toolbar, .ecms-ui').remove();
             }
         }, {
             key: 'setDefaultData',
             value: function setDefaultData() {
+                console.log('### SET DEFAULT DATA');
                 if (this.$scope.$widget) {
                     this.$scope.data = this.$scope.$widget.getDefaults();
                 }
@@ -194,7 +204,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'getToolbarHtml',
             value: function getToolbarHtml() {
-                var _this3 = this;
+                var _this4 = this;
 
                 var deferred = this.$q.defer();
                 var template = this.$templateCache.get('widget-toolbar.html');
@@ -203,7 +213,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                     deferred.resolve(template);
                 } else {
                     this.$templateRequest(this.$rootScope.toolbarTemplateUrl).then(function (template) {
-                        _this3.$templateCache.put('widget-toolbar.html', template);
+                        _this4.$templateCache.put('widget-toolbar.html', template);
                         deferred.resolve(template);
                     });
                 }
@@ -213,16 +223,17 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'showToolbar',
             value: function showToolbar() {
-                var _this4 = this;
+                var _this5 = this;
 
                 if (this.$scope.toolbarInitialized === false) {
                     if (this.$scope.$element && this.$scope.$element.length > 0) {
                         this.$scope.toolbarInitialized = true;
                         this.getToolbarHtml().then(function (html) {
-                            _this4.$scope.$element.prepend(html);
-                            _this4.$scope.$element.html(_this4.$compile(_this4.$scope.$element.html())(_this4.$scope));
-                            _this4.$scope.$element.addClass('ecms-widget-hover');
-                            _this4.$scope.toolbarVisible = true;
+                            html = _this5.$compile(html)(_this5.$scope);
+                            _this5.$scope.$element.prepend(html);
+                            //this.$scope.$element.html(this.$compile(this.$scope.$element.html())(this.$scope));
+                            _this5.$scope.$element.addClass('ecms-widget-hover');
+                            _this5.$scope.toolbarVisible = true;
                         });
                         return;
                     }
@@ -298,12 +309,12 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'removeConfirmation',
             value: function removeConfirmation() {
-                var _this5 = this;
+                var _this6 = this;
 
                 var deferred = this.$q.defer();
 
                 this.$translate(['Are you sure you want to delete this widget?', 'Remove widget', 'Cancel']).then(function (translated) {
-                    _this5.$mdDialog.show(_this5.$mdDialog.confirm().title(translated['Are you sure you want to delete this widget?']).ariaLabel('Remove widget').targetEvent(event).ok(translated['Remove widget']).cancel(translated['Cancel'])).then(function () {
+                    _this6.$mdDialog.show(_this6.$mdDialog.confirm().title(translated['Are you sure you want to delete this widget?']).ariaLabel('Remove widget').targetEvent(event).ok(translated['Remove widget']).cancel(translated['Cancel'])).then(function () {
                         deferred.resolve();
                     });
                 });
@@ -313,7 +324,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'remove',
             value: function remove(event) {
-                var _this6 = this;
+                var _this7 = this;
 
                 var _remove = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
@@ -327,12 +338,12 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
 
                 var removeFunc = function removeFunc() {
                     if (!event.name || event.name != 'remove') {
-                        _this6.$scope.$broadcast('remove', { remove: _remove });
+                        _this7.$scope.$broadcast('remove', { remove: _remove });
                     }
 
                     if (_remove) {
-                        (0, _jquery2.default)(_this6.$scope.$element).fadeOut('fast', function () {
-                            (0, _jquery2.default)(_this6.$scope.$element).remove();
+                        (0, _jquery2.default)(_this7.$scope.$element).fadeOut('fast', function () {
+                            (0, _jquery2.default)(_this7.$scope.$element).remove();
                         });
                     }
                 };
@@ -365,8 +376,47 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 this.removeToolbar();
             }
         }, {
+            key: 'compileAngularComponents',
+            value: function compileAngularComponents() {
+                var _this8 = this;
+
+                var angularComponents = ['beyer-icon', 'beyer-button'];
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = angularComponents[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var comp = _step.value;
+
+                        this.$scope.$element.find(comp).each(function (index, el) {
+                            // only compile if not already compiled
+                            // -> sometimes CKEditor is leaving the compiled component as it is???
+                            if (!el.classList.contains('ng-scope')) {
+                                _this8.$compile(el)(_this8.$scope);
+                            }
+                        });
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }
+        }, {
             key: 'afterPageSave',
-            value: function afterPageSave() {}
+            value: function afterPageSave() {
+                this.compileAngularComponents();
+            }
         }, {
             key: 'onDataChanged',
             value: function onDataChanged(event, mass) {

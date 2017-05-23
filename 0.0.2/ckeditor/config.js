@@ -38,15 +38,21 @@ CKEDITOR.editorConfig = function( config ) {
 	config.allowedContent = true;
 	config.extraAllowedContent = 'p(*)';
 
-	if(window.builderData && window.builderData.imageUploadUrl) {
+	if (window.builderData && window.builderData.imageUploadUrl) {
 		config.uploadUrl = window.builderData.imageUploadUrl;
 		config.filebrowserUploadUrl = window.builderData.imageUploadUrl;
 		config.filebrowserImageUploadUrl = window.builderData.imageUploadUrl;
 	}
 
-	config.extraPlugins = 'uploadimage,image2,fontawesome';
+	config.extraPlugins = 'uploadimage,image2,fontawesome,buttonbeyer,iconbeyer';
 
 
 	config.skin = 'office2013';
 	config.title = false;
 };
+
+/*
+CKEDITOR.dtd['beyer-button'] = { '#' : 1, 'span' : 1 }; //only text and span
+CKEDITOR.dtd.$inline['beyer-button'] = 1;// Custom tag is inline
+CKEDITOR.dtd.body['beyer-button'] = 1;
+*/

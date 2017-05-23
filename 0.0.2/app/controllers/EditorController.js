@@ -30,11 +30,12 @@ define(['exports'], function (exports) {
     }();
 
     var EditorController = function () {
-        function EditorController($rootScope, $scope, $element) {
+        function EditorController($rootScope, $scope, $element, $compile) {
             _classCallCheck(this, EditorController);
 
             this.$rootScope = $rootScope;
             this.$scope = $scope;
+            this.$compile = $compile;
             this.$scope.$element = $element;
             this.$scope._editorInstance = null;
 
@@ -51,6 +52,11 @@ define(['exports'], function (exports) {
         }, {
             key: 'initEvents',
             value: function initEvents() {
+                var _this = this;
+
+                this.$scope.$element[0].addEventListener('ngComponentViaCKEditor', function (e) {
+                    _this.$compile(e.detail)(_this.$scope);
+                });
                 this.$scope.$element.click(this.onClick.bind(this));
                 this.$scope.$on('remove', this.remove.bind(this));
             }
@@ -76,13 +82,49 @@ define(['exports'], function (exports) {
                         }
                     }
                 }
-
                 return this.$scope._editorInstance;
+            }
+        }, {
+            key: 'bindDebuggingEvents',
+            value: function bindDebuggingEvents(editor) {
+                var eventList = ['activeEnterModeChange', 'activeFilterChange', 'afterCommandExec', 'afterInsertHtml', 'afterPaste', 'afterPasteFromWord', 'afterSetData', 'afterUndoImage', 'ariaEditorHelpLabel', 'ariaWidget', 'autogrow', 'beforeCommandExec', 'beforeDestroy', 'beforeGetData', 'beforeModeUnload', 'beforeSetMode', 'beforeUndoImage', 'blur', 'change', 'configLoaded', 'contentDirChanged', 'contentDom', 'contentDomInvalidated', 'contentDomUnload', 'customConfigLoaded', 'dataFiltered', 'dataReady', 'destroy', 'dialogHide', 'dialogShow', 'dirChanged', 'doubleclick', 'dragend', 'dragstart', 'drop', 'elementsPathUpdate', 'fileUploadRequest', 'fileUploadResponse', 'floatingSpaceLayout', 'focus', 'getData', 'getSnapshot', 'insertElement', 'insertHtml', 'insertText', 'instanceReady', 'key', 'langLoaded', 'loadSnapshot', 'loaded', 'lockSnapshot', 'maximize', 'menuShow', 'mode', 'notificationHide', 'notificationShow', 'notificationUpdate', 'paste', 'pasteFromWord', 'pluginsLoaded', 'readOnly', 'removeFormatCleanup', 'required', 'resize', 'save', 'saveSnapshot', 'selectionChange', 'setData', 'stylesSet', 'template', 'toDataFormat', 'toHtml', 'unlockSnapshot', 'updateSnapshot', 'widgetDefinition'];
+
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    var _loop = function _loop() {
+                        var event = _step.value;
+
+                        editor.on(event, function () {
+                            console.log('### ' + event + ' fired');
+                        });
+                    };
+
+                    for (var _iterator = eventList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        _loop();
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
             }
         }, {
             key: 'initEditorEvents',
             value: function initEditorEvents() {
                 var editor = this.getEditorInstance();
+                //this.bindDebuggingEvents(editor);
                 editor.on('focus', this.onFocus.bind(this));
                 editor.on('blur', this.onBlur.bind(this));
             }

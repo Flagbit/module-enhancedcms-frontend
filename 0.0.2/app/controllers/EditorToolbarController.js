@@ -146,6 +146,27 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 });
             }
         }, {
+            key: 'tidyUpBeyerButton',
+            value: function tidyUpBeyerButton(el) {
+                var buttons = el.find('beyer-button');
+                buttons.each(function (index, el) {
+                    var buttonText = el.querySelector('span').innerText;
+                    el.innerText = buttonText;
+                    el.removeAttribute('class');
+                });
+                return el;
+            }
+        }, {
+            key: 'tidyUpBeyerIcon',
+            value: function tidyUpBeyerIcon(el) {
+                var icons = el.find('beyer-icon');
+                icons.each(function (index, el) {
+                    el.innerHTML = '';
+                    el.removeAttribute('class');
+                });
+                return el;
+            }
+        }, {
             key: 'tidyUpElement',
             value: function tidyUpElement(el) {
                 this.tidyUpCarousel(el);
@@ -204,6 +225,8 @@ define(['exports', 'jquery'], function (exports, _jquery) {
 
                 var el = (0, _jquery2.default)('#ecms-page-content');
                 el = this.removeUIElements(el);
+                el = this.tidyUpBeyerButton(el);
+                el = this.tidyUpBeyerIcon(el);
                 var clonedEl = el.clone();
                 this.tidyUpElement(clonedEl);
 

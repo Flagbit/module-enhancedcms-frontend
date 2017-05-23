@@ -92,7 +92,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
 
                 if (element.hasClass('ecms-widget-container-item')) {
                     var widget = element.parents('.ecms-widget-container');
-                    el.clone().prependTo(widget);
+                    //el.clone().prependTo(widget);
 
                     el.addClass('ecms-widget-toolbar-right');
                 }

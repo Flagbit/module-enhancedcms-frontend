@@ -67,7 +67,7 @@ define(["exports", "./AbstractWidgetController.min.js"], function (exports, _Abs
         function ContainerWidgetController($rootScope, $scope, $element, $attrs, $mdDialog, $compile, $q, $log, ecmsPanel, $timeout, $translate, $templateCache, $templateRequest) {
             _classCallCheck(this, ContainerWidgetController);
 
-            var _this = _possibleConstructorReturn(this, (ContainerWidgetController.__proto__ || Object.getPrototypeOf(ContainerWidgetController)).call(this, $rootScope, $scope, $element, $attrs, $mdDialog, $compile, $q, $log, ecmsPanel, $timeout, $translate, $templateCache, $templateRequest));
+            var _this = _possibleConstructorReturn(this, (ContainerWidgetController.__proto__ || Object.getPrototypeOf(ContainerWidgetController)).apply(this, arguments));
 
             _this.$scope.columnCount = null;
 
