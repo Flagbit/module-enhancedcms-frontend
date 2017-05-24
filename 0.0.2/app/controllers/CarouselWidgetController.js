@@ -116,7 +116,7 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             value: function insertAddSlideBtn(lastSlide) {
                 console.log('sdfghj', lastSlide);
                 //let btn = $.parseHTML('<md-button class="md-fab md-primary ecms-ui" ng-click="ctrl.addSlide()" aria-label="Add Slide"><md-icon md-font-icon="mdi" class="mdi-plus"></md-icon></md-button>');
-                var btn = _jquery2.default.parseHTML('<button class="ecms-ui md-button md-primary md-raised" ng-click="ctrl.addSlide()">Add Slide</button>');
+                var btn = _jquery2.default.parseHTML('<button class="ecms-ui md-button md-primary md-raised " ng-click="ctrl.addSlide()">Add Slide</button>');
                 console.log('BTN', btn);
                 //$(btn).click( this.addSlide.apply(this, $lastSlide) );
                 this.$compile(btn)(this.$scope);
