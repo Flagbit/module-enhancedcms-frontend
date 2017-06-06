@@ -25,12 +25,12 @@ define(['jquery', './plugins/productSelect.min.js', './plugins/imageSelect.min.j
     };
   }
 
-  JSONForm.fieldTypes['productSelect'] = _productSelectMin2.default;
-  JSONForm.fieldTypes['imageSelect'] = _imageSelectMin2.default;
-  JSONForm.fieldTypes['sideSizes'] = _sideSizesMin2.default;
-  JSONForm.fieldTypes['size'] = _sizeMin2.default;
-  JSONForm.fieldTypes['youtubeId'] = _youtubeIdMin2.default;
-  JSONForm.fieldTypes['color'] = _colorMin2.default;
-  JSONForm.fieldTypes['opacity'] = _opacityMin2.default;
-  JSONForm.fieldTypes['replaceQuotes'] = _replaceQuotesMin2.default;
+  JSONForm.elementTypes['productSelect'] = _productSelectMin2.default;
+  JSONForm.elementTypes['imageSelect'] = _imageSelectMin2.default;
+  JSONForm.elementTypes['sideSizes'] = _sideSizesMin2.default;
+  JSONForm.elementTypes['size'] = _sizeMin2.default;
+  JSONForm.elementTypes['youtubeId'] = _youtubeIdMin2.default;
+  JSONForm.elementTypes['color'] = _colorMin2.default;
+  JSONForm.elementTypes['opacity'] = _opacityMin2.default;
+  JSONForm.elementTypes['replaceQuotes'] = _replaceQuotesMin2.default;
 });
