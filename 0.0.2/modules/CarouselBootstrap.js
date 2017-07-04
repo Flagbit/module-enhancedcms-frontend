@@ -3,7 +3,7 @@ define(["require", "exports"], function (require, exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var CarouselBootstrap = (function () {
         function CarouselBootstrap() {
-            var carousels = document.getElementsByClassName('carousel');
+            var carousels = document.querySelectorAll('.ecms-widget-carousel .carousel');
             console.log('CAROUSEL BOOtSTRAP', carousels);
             if (carousels) {
                 for (var i = 0; i < carousels.length; i++) {
