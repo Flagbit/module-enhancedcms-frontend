@@ -254,7 +254,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                         _this2.$rootScope.$emit('stopProcess');
 
                         _this2.$mdToast.show(_this2.$mdToast.simple().textContent(response.message).position('bottom left').hideDelay(3000));
-
+                        _this2.$compile(el)(_this2.$scope);
                         _this2.$rootScope.$broadcast('afterPageSave');
                     },
                     error: function error(response) {
