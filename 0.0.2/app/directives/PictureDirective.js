@@ -1,4 +1,4 @@
-define(['exports', '../controllers/PictureController'], function (exports, _PictureController) {
+define(['exports', '../controllers/PictureController.min.js'], function (exports, _PictureControllerMin) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -16,7 +16,7 @@ define(['exports', '../controllers/PictureController'], function (exports, _Pict
     _classCallCheck(this, PictureDirective);
 
     this.restrict = 'A';
-    this.controller = _PictureController.PictureController.name;
+    this.controller = _PictureControllerMin.PictureController.name;
     this.controllerAs = 'ctrl';
     this.scope = true;
     return this;
