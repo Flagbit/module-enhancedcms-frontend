@@ -1,24 +1,16 @@
 define(['exports', '../controllers/PictureController.min.js'], function (exports, _PictureControllerMin) {
-  'use strict';
+    'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.PictureDirective = undefined;
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  var PictureDirective = exports.PictureDirective = function PictureDirective() {
-    _classCallCheck(this, PictureDirective);
-
-    this.restrict = 'A';
-    this.controller = _PictureControllerMin.PictureController.name;
-    this.controllerAs = 'ctrl';
-    this.scope = true;
-    return this;
-  };
+    exports.default = function ($window, $document, $timeout) {
+        return {
+            restrict: 'A',
+            controller: _PictureControllerMin.PictureController.name,
+            controllerAs: 'ctrl',
+            scope: true
+        };
+    };
 });

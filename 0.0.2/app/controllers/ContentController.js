@@ -54,7 +54,7 @@ define(["exports", "jquery", "prototype", "../configs/CONSTANTS.min.js", "../cla
             init: function init() {
                 var _this = this;
 
-                document.body.classList.add(_CONSTANTSMin.CONSTANTS.BODY_CLASSNAME);
+                document.documentElement.classList.add(_CONSTANTSMin.CONSTANTS.BODY_CLASSNAME);
 
                 this.$element = $element;
 

@@ -1,9 +1,18 @@
-define(["exports"], function (exports) {
-  "use strict";
+define(['exports', './AbstractWidgetController.min.js', './PictureDialogController.min.js'], function (exports, _AbstractWidgetControllerMin, _PictureDialogControllerMin) {
+  'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.PictureController = undefined;
+
+  var _AbstractWidgetControllerMin2 = _interopRequireDefault(_AbstractWidgetControllerMin);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -30,13 +39,38 @@ define(["exports"], function (exports) {
   }();
 
   var PictureController = exports.PictureController = function () {
-    function PictureController() {
+    function PictureController($scope, $rootScope, $element, $mdDialog) {
       _classCallCheck(this, PictureController);
+
+      this.$element = $element;
+      this.$mdDialog = $mdDialog;
+      this.$rootScope = $rootScope;
+      this.$scope = $scope;
+
+      this.images = this.$scope.data.images || {};
     }
 
     _createClass(PictureController, [{
-      key: "$onInit",
-      value: function $onInit() {}
+      key: 'openDialog',
+      value: function openDialog() {
+        this.$mdDialog.show({
+          templateUrl: this.$rootScope.templateBaseUrl + '/dialog/picture-upload.html',
+          clickOutsideToClose: true,
+          parent: document.body,
+          locals: {
+            images: this.images,
+            scope: this.$scope,
+            rootScope: this.$rootScope
+          },
+          controller: _PictureDialogControllerMin.PictureDialogController.name,
+          controllerAs: 'ctrl'
+        });
+      }
+    }, {
+      key: '$onInit',
+      value: function $onInit() {
+        this.$element.dblclick(this.openDialog.bind(this));
+      }
     }]);
 
     return PictureController;

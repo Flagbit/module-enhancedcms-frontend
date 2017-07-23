@@ -157,6 +157,16 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 return el;
             }
         }, {
+            key: 'deleteCustomComponentsContent',
+            value: function deleteCustomComponentsContent(tag, el) {
+                var icons = el.find(tag);
+                icons.each(function (index, el) {
+                    el.innerHTML = '';
+                    el.removeAttribute('class');
+                });
+                return el;
+            }
+        }, {
             key: 'tidyUpBeyerIcon',
             value: function tidyUpBeyerIcon(el) {
                 var icons = el.find('beyer-icon');
@@ -169,11 +179,12 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         }, {
             key: 'tidyUpBeyerCategoryProducts',
             value: function tidyUpBeyerCategoryProducts(el) {
-                var items = el.find('beyer-widget-category-products');
-                items.each(function (index, el) {
-                    el.innerHTML = '';
-                });
-                return el;
+                return this.deleteCustomComponentsContent('beyer-widget-category-products', el);
+            }
+        }, {
+            key: 'tidyUpPictureComponent',
+            value: function tidyUpPictureComponent(el) {
+                return this.deleteCustomComponentsContent('picture-component', el);
             }
         }, {
             key: 'tidyUpElement',
@@ -183,10 +194,18 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el.find('*').not('iframe, iframe *').each(function (idx, currentEl) {
                     var $currentEl = (0, _jquery2.default)(currentEl);
 
+                    console.log('+++ ', currentEl);
+
                     $currentEl.contents().filter(function (i, el) {
+                        if (el.nodeType == 8) console.log('++++', el);
                         return el.nodeType == 8;
                     }).each(function (i, e) {
                         (0, _jquery2.default)(e).remove();
+                    });
+
+                    $currentEl.contents().filter(function (i, el) {
+                        if (el.nodeType == 8) console.log('+++++', el);
+                        return el.nodeType == 8;
                     });
 
                     if ($currentEl.hasClass('cke_image_resizer') || $currentEl.hasClass('cke_reset')) {
@@ -225,6 +244,12 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 return html;
             }
         }, {
+            key: 'getCleanBuilderDOM',
+            value: function getCleanBuilderDOM(el) {
+                el = this.tidyUpPictureComponent(el);
+                return el;
+            }
+        }, {
             key: 'savePage',
             value: function savePage() {
                 var _this2 = this;
@@ -237,8 +262,10 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el = this.tidyUpBeyerButton(el);
                 el = this.tidyUpBeyerIcon(el);
                 el = this.tidyUpBeyerCategoryProducts(el);
+                el = this.tidyUpPictureComponent(el);
                 var clonedEl = el.clone();
-                this.tidyUpElement(clonedEl);
+                var cleanedEl = this.getCleanBuilderDOM(clonedEl);
+                this.tidyUpElement(cleanedEl);
 
                 _jquery2.default.ajax({
                     url: this.$rootScope.saveUrl,
