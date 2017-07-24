@@ -90,6 +90,7 @@ define(['exports'], function (exports) {
                 _this.$mdToast.show(_this.$mdToast.simple().textContent(translated + ' Code: ' + resp.status).position('bottom left').hideDelay(3000));
               });
             }, function (e) {
+              console.log(e.total, e.loaded);
               _this.progress[size] = parseInt(100.0 * e.loaded / e.total);
             });
           };

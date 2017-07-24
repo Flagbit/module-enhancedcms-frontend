@@ -102,10 +102,6 @@ define(['exports', 'jquery', '../classes/Utils.min.js', './PanelController.min.j
                 _this.$scope.title = translated;
             });
 
-            console.log('CONSTRUCT CONFIGCONTROLLER');
-
-            _this.$rootScope = $rootScope;
-
             _this.$scope.isWidgetConfigLoading = false;
             _this.$scope.isWidgetConfigEmpty = true;
             _this.$scope.isWidgetConfigSaving = false;
@@ -145,14 +141,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js', './PanelController.min.j
                     _this2.loadForm();
                 });
 
-                this.$rootScope.$on('blubb', function (event, mass) {
-                    console.log('+++ CONFIG RECEIVED', mass);
-                });
-
-                this.$rootScope.$emit('blubb', { a: "a" });
-
                 this.$scope.$on('uploadDone', function (event, mass) {
-                    console.log('UPLOAD DONE EVENT');
                     _this2.$scope.currentData = _jquery2.default.extend(_this2.$scope.currentData, mass.data);
                     _this2.$scope.uploadCount--;
                     if (_this2.$scope.uploadCount == 0) {
