@@ -1,4 +1,4 @@
-define(['exports'], function (exports) {
+define(['exports', '../configs/CONSTANTS.min.js'], function (exports, _CONSTANTSMin) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -71,11 +71,17 @@ define(['exports'], function (exports) {
                 widget.categories = widget.getCategory().split(',');
             });
             this.$scope.categories = this.$rootScope.categories;
+            console.log(this.$scope.categories);
             this.$scope.catFilter = {};
             this.$scope.expandedCategory = null;
         }
 
         _createClass(WidgetListController, [{
+            key: 'getIcon',
+            value: function getIcon(title) {
+                return _CONSTANTSMin.CATEGORY_ICONS[title];
+            }
+        }, {
             key: 'initEventListeners',
             value: function initEventListeners() {
                 _get(WidgetListController.prototype.__proto__ || Object.getPrototypeOf(WidgetListController.prototype), 'initEventListeners', this).call(this);
