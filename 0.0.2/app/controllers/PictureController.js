@@ -48,9 +48,6 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       this.$scope = $scope;
 
       this.images = this.$scope.data.images || {};
-      if (!this.images['xl']) {
-        this.images['xl'] = 'https://placehold.it/2000x500';
-      }
     }
 
     _createClass(PictureController, [{
