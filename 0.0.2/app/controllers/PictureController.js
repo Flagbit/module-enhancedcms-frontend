@@ -85,11 +85,11 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       value: function $onInit() {
         var _this = this;
 
-        var widgetContainer = this.$element.closest('.ecms-widget-directive');
+        var widgetContainerId = this.$element.closest('.ecms-widget-directive')[0].id;
         document.body.addEventListener('dblclick', function (e) {
-          var clickedWidgetContainer = angular.element(e.target).closest('.ecms-widget-directive');
-          if (widgetContainer[0] === clickedWidgetContainer[0]) {
-            _this.openDialog.bind(_this);
+          var clickedWidgetContainerId = angular.element(e.target).closest('.ecms-widget-directive')[0].id;
+          if (widgetContainerId === clickedWidgetContainerId) {
+            _this.openDialog();
           };
         });
       }

@@ -194,18 +194,10 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el.find('*').not('iframe, iframe *').each(function (idx, currentEl) {
                     var $currentEl = (0, _jquery2.default)(currentEl);
 
-                    console.log('+++ ', currentEl);
-
                     $currentEl.contents().filter(function (i, el) {
-                        if (el.nodeType == 8) console.log('++++', el);
                         return el.nodeType == 8;
                     }).each(function (i, e) {
                         (0, _jquery2.default)(e).remove();
-                    });
-
-                    $currentEl.contents().filter(function (i, el) {
-                        if (el.nodeType == 8) console.log('+++++', el);
-                        return el.nodeType == 8;
                     });
 
                     if ($currentEl.hasClass('cke_image_resizer') || $currentEl.hasClass('cke_reset')) {
