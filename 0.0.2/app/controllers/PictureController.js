@@ -47,6 +47,14 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       this.$rootScope = $rootScope;
       this.$scope = $scope;
 
+      if (!$scope.data.images) {
+        if ($scope.data.fallback_image) {
+          $scope.data.images = {
+            'xl': $scope.data.fallback_image
+          };
+        }
+      }
+
       this.images = this.$scope.data.images || {};
     }
 
