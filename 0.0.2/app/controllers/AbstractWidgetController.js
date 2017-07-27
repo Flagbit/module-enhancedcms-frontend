@@ -225,6 +225,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             value: function showToolbar() {
                 var _this5 = this;
 
+                console.log('+++ SHOW TOOLBARS');
                 if (this.$scope.toolbarInitialized === false) {
                     if (this.$scope.$element && this.$scope.$element.length > 0) {
                         this.$scope.toolbarInitialized = true;
@@ -467,6 +468,11 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 this.$scope.$on('showToolbar', this.showToolbar.bind(this));
 
                 this.$scope.$element.hover(this.onMouseEnter.bind(this), this.onMouseLeave.bind(this));
+            }
+        }, {
+            key: 'pictureToFront',
+            value: function pictureToFront(e) {
+                this.$scope.$element.find('.widget-container').toggleClass('hide');
             }
         }]);
 

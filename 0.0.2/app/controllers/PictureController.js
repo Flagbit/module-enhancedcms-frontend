@@ -47,13 +47,7 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       this.$rootScope = $rootScope;
       this.$scope = $scope;
 
-      $scope.$watch('data', function () {
-        console.log('+++', $scope.data);
-      });
-
-      console.log('+', $scope.data.images);
       if (!$scope.data.images) {
-        console.log('++', $scope.data.fallback_image);
         if ($scope.data.fallback_image) {
           $scope.data.images = {
             'xl': $scope.data.fallback_image
@@ -83,15 +77,16 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
     }, {
       key: '$onInit',
       value: function $onInit() {
-        var _this = this;
-
-        var widgetContainerId = this.$element.closest('.ecms-widget-directive')[0].id;
-        document.body.addEventListener('dblclick', function (e) {
-          var clickedWidgetContainerId = angular.element(e.target).closest('.ecms-widget-directive')[0].id;
-          if (widgetContainerId === clickedWidgetContainerId) {
-            _this.openDialog();
+        this.$element.dblclick(this.openDialog.bind(this));
+        /*
+        let widgetContainerId = this.$element.closest('.ecms-widget-directive')[0].id;
+        document.body.addEventListener('dblclick', (e) => {
+          let clickedWidgetContainerId = angular.element(e.target).closest('.ecms-widget-directive')[0].id;
+          if ( widgetContainerId === clickedWidgetContainerId ) {
+            this.openDialog();
           };
         });
+        */
       }
     }]);
 
