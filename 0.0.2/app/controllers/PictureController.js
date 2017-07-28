@@ -47,15 +47,17 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       this.$rootScope = $rootScope;
       this.$scope = $scope;
 
+      /*
       if (!$scope.data.images) {
         if ($scope.data.fallback_image) {
           $scope.data.images = {
             'xl': $scope.data.fallback_image
-          };
+          }
         }
       }
+      */
 
-      this.images = this.$scope.data.images || {};
+      this.images = this.$scope.data.images || [];
     }
 
     _createClass(PictureController, [{
@@ -66,7 +68,7 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
           clickOutsideToClose: true,
           parent: document.body,
           locals: {
-            images: this.images,
+            images: this.$scope.data.images[this.nthOfType],
             scope: this.$scope,
             rootScope: this.$rootScope
           },
@@ -78,15 +80,20 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       key: '$onInit',
       value: function $onInit() {
         this.$element.dblclick(this.openDialog.bind(this));
-        /*
-        let widgetContainerId = this.$element.closest('.ecms-widget-directive')[0].id;
-        document.body.addEventListener('dblclick', (e) => {
-          let clickedWidgetContainerId = angular.element(e.target).closest('.ecms-widget-directive')[0].id;
-          if ( widgetContainerId === clickedWidgetContainerId ) {
-            this.openDialog();
+
+        var widgetId = this.$scope.$parent.$parent.widgetId;
+        var pictureComponents = jQuery('#' + widgetId + ' picture-component');
+        var pictureComponent = this.$element.find('picture-component').first();
+        this.nthOfType = pictureComponents.index(pictureComponent);
+
+        if (!this.$scope.data.images) {
+          this.$scope.data.images = [];
+        }
+        if (this.$scope.data.fallback_image && !this.$scope.data.images[this.nthOfType]) {
+          this.$scope.data.images[this.nthOfType] = {
+            'xl': this.$scope.data.fallback_image
           };
-        });
-        */
+        }
       }
     }]);
 

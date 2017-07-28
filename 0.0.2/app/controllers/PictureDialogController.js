@@ -43,6 +43,7 @@ define(['exports'], function (exports) {
       this.files = {};
       this.progress = {};
       this.images = locals.images;
+      console.log(this.$scope);
     }
 
     _createClass(PictureDialogController, [{
