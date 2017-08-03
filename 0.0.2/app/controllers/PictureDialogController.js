@@ -77,7 +77,8 @@ define(['exports'], function (exports) {
             }).then(function (resp) {
               _this.images[size] = resp.data.url;
               if (Object.keys(_this.images).length === Object.keys(_this.files).length) {
-                _this.$scope.data.images = _this.images;
+                console.log('+++ dfghj', _this.images);
+                // this.$scope.data.images = this.images;
                 /*
                 this.$scope.$emit('blubb', {
                   data: this.images
