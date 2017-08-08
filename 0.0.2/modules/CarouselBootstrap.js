@@ -10,7 +10,7 @@ define(["require", "exports"], function (require, exports) {
                     var carousel = carousels[i];
                     var slides = carousel.querySelectorAll('.carousel-item');
                     this.buildDots(carousel, slides);
-                    this.buildControls(carousel);
+                    // this.buildControls(carousel);
                     this.initCarousel(slides);
                 }
             }

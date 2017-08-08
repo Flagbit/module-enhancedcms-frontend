@@ -65,7 +65,7 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var TEMPLATE_SLIDE = '<div class="carousel-item" ecms-editor>\n  <img class="d-block img-fluid" data-src="holder.js/2000x400" />\n  <div class="carousel-caption-bottom d-none d-md-block">\n    <h3>Carousel Caption</h3>\n  </div>\n</div>';
+    var TEMPLATE_SLIDE = '<div class="carousel-item">\n    <div\n    picture-upload\n    ng-if="data.fallback_image ||\xA0data.images"\n    ng-attr-images="{[{ data.images[0] }]}">\n    <picture-component>\n    </picture-component>\n    </div>\n    <div\n    class="carousel-caption-bottom">\n    <div class="container">\n        <div class="row justify-content-center">\n        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-xl-6">\n            <div class="text" ecms-editor>\n            <h3 class="light">Caption One</h3>\n            <p class="p5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde aliquid molestiae repellendus fugit eveniet, placeat perferendis sunt nulla tenetur asperiores voluptatibus quia!</p>\n            </div>\n        </div>\n        </div>\n    </div>\n  </div>';
 
     var CarouselController = function (_WidgetController) {
         _inherits(CarouselController, _WidgetController);
@@ -83,11 +83,13 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             var lastSlide = $element.find('.carousel-item').last();
             _this.insertAddSlideBtn(lastSlide);
 
-            _this.$scope.$on('stopProcess', function () {
-                _Holder2.default.run({
+            /*
+            this.$scope.$on('stopProcess', () => {
+                Holder.run({
                     images: document.getElementById($element.attr('id')).querySelectorAll('img')
                 });
-            });
+            })
+            */
 
             _this.$scope.slickConfig = {};
             return _this;
@@ -101,24 +103,26 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
         }, {
             key: 'addSlide',
             value: function addSlide() {
-                console.log('ADD SLIDE');
+                // console.log('ADD SLIDE');
                 var slide = _jquery2.default.parseHTML(TEMPLATE_SLIDE);
                 (0, _jquery2.default)(slide).insertAfter(this.$element.find('.carousel-item').last());
-                var image = slide[0].getElementsByTagName('img')[0];
-                console.log(image);
-                _Holder2.default.run({
+                /*
+                let image = slide[0].getElementsByTagName('img')[0];
+                console.log(image)
+                Holder.run({
                     images: slide[0].getElementsByTagName('img')[0]
-                });
+                })
+                */
                 this.$compile(slide)(this.$scope);
             }
         }, {
             key: 'insertAddSlideBtn',
             value: function insertAddSlideBtn(lastSlide) {
-                console.log('sdfghj', lastSlide);
+                // console.log('sdfghj', lastSlide);
                 //let btn = $.parseHTML('<md-button class="md-fab md-primary ecms-ui" ng-click="ctrl.addSlide()" aria-label="Add Slide"><md-icon md-font-icon="mdi" class="mdi-plus"></md-icon></md-button>');
                 var btn = _jquery2.default.parseHTML('<button class="ecms-ui md-button md-primary md-raised " ng-click="ctrl.addSlide()">Add Slide</button>');
-                console.log('BTN', btn);
-                //$(btn).click( this.addSlide.apply(this, $lastSlide) );
+                // console.log('BTN', btn)
+                // $(btn).click( this.addSlide.apply(this, $lastSlide) );
                 this.$compile(btn)(this.$scope);
                 (0, _jquery2.default)(btn).insertAfter(lastSlide);
             }
