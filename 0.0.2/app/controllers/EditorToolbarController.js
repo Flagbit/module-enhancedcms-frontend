@@ -187,6 +187,11 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 return this.deleteCustomComponentsContent('picture-component', el);
             }
         }, {
+            key: 'tidyUpWidgetProducts',
+            value: function tidyUpWidgetProducts(el) {
+                return this.deleteCustomComponentsContent('widget-products', el);
+            }
+        }, {
             key: 'tidyUpElement',
             value: function tidyUpElement(el) {
                 this.tidyUpCarousel(el);
@@ -255,6 +260,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el = this.tidyUpBeyerIcon(el);
                 el = this.tidyUpBeyerCategoryProducts(el);
                 el = this.tidyUpPictureComponent(el);
+                el = this.tidyUpWidgetProducts(el);
                 var clonedEl = el.clone();
                 var cleanedEl = this.getCleanBuilderDOM(clonedEl);
                 this.tidyUpElement(cleanedEl);
