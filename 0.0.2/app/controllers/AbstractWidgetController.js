@@ -416,7 +416,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'afterPageSave',
             value: function afterPageSave() {
-                this.compileAngularComponents();
+                // this.compileAngularComponents();
             }
         }, {
             key: 'onDataChanged',

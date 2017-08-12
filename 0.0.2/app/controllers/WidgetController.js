@@ -96,6 +96,8 @@ define(['exports', './AbstractWidgetController.min.js', 'jquery'], function (exp
 
             var _this = _possibleConstructorReturn(this, (WidgetController.__proto__ || Object.getPrototypeOf(WidgetController)).call(this, $rootScope, $scope, $element, $attrs, $mdDialog, $compile, $q, $log, ecmsPanel, $timeout, $translate, $templateCache, $templateRequest));
 
+            console.log('###', $scope.data);
+
             _this.$log.debug('Init widget');
             return _this;
         }

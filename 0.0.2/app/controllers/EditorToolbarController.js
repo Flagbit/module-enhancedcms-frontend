@@ -192,6 +192,17 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 return this.deleteCustomComponentsContent('widget-products', el);
             }
         }, {
+            key: 'tidyUpWidgetReferences',
+            value: function tidyUpWidgetReferences(el) {
+                var buttons = el.find('beyer-tile-reference');
+                buttons.each(function (index, el) {
+                    var buttonText = el.querySelector('[ng-transclude]').innerText;
+                    el.innerText = buttonText;
+                    el.removeAttribute('class');
+                });
+                return el;
+            }
+        }, {
             key: 'tidyUpElement',
             value: function tidyUpElement(el) {
                 this.tidyUpCarousel(el);
@@ -261,6 +272,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el = this.tidyUpBeyerCategoryProducts(el);
                 el = this.tidyUpPictureComponent(el);
                 el = this.tidyUpWidgetProducts(el);
+                el = this.tidyUpWidgetReferences(el);
                 var clonedEl = el.clone();
                 var cleanedEl = this.getCleanBuilderDOM(clonedEl);
                 this.tidyUpElement(cleanedEl);

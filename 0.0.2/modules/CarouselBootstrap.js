@@ -3,14 +3,13 @@ define(["require", "exports"], function (require, exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var CarouselBootstrap = (function () {
         function CarouselBootstrap() {
-            var carousels = document.getElementsByClassName('carousel');
-            console.log('CAROUSEL BOOtSTRAP', carousels);
+            var carousels = document.querySelectorAll('.carousel:not(.carousel--alpha)');
             if (carousels) {
                 for (var i = 0; i < carousels.length; i++) {
                     var carousel = carousels[i];
                     var slides = carousel.querySelectorAll('.carousel-item');
                     this.buildDots(carousel, slides);
-                    // this.buildControls(carousel);
+                    this.buildControls(carousel);
                     this.initCarousel(slides);
                 }
             }
@@ -34,17 +33,19 @@ define(["require", "exports"], function (require, exports) {
             return carousel;
         };
         CarouselBootstrap.prototype.buildControls = function (carousel) {
-            var directions = ['prev', 'next'];
-            for (var _i = 0, directions_1 = directions; _i < directions_1.length; _i++) {
-                var direction = directions_1[_i];
-                var link = document.createElement('a');
-                link.classList.add("carousel-control-" + direction);
-                link.href = "#" + carousel.id;
-                link.dataset.slide = direction;
-                var icon = document.createElement('span');
-                icon.classList.add("carousel-control-" + direction + "-icon");
-                link.appendChild(icon);
-                carousel.appendChild(link);
+            if (!carousel.getElementsByClassName('carousel-control-prev').length) {
+                var directions = ['prev', 'next'];
+                for (var _i = 0, directions_1 = directions; _i < directions_1.length; _i++) {
+                    var direction = directions_1[_i];
+                    var link = document.createElement('a');
+                    link.classList.add("carousel-control-" + direction);
+                    link.href = "#" + carousel.id;
+                    link.dataset.slide = direction;
+                    var icon = document.createElement('span');
+                    icon.classList.add("carousel-control-" + direction + "-icon");
+                    link.appendChild(icon);
+                    carousel.appendChild(link);
+                }
             }
             return carousel;
         };

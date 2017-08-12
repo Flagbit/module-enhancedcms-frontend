@@ -89,6 +89,8 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
         if (!this.$scope.data.images) {
           this.$scope.data.images = [];
         }
+        console.log('$ID', this.$scope.$id);
+        console.log('BLA', this.$scope.data.images[this.nthOfType]);
         if (this.$scope.data.fallback_image && !this.$scope.data.images[this.nthOfType]) {
           this.$scope.data.images[this.nthOfType] = {
             'xl': this.$scope.data.fallback_image
