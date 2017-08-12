@@ -35,16 +35,21 @@ define(["require", "exports"], function (require, exports) {
         CarouselBootstrap.prototype.buildControls = function (carousel) {
             if (!carousel.getElementsByClassName('carousel-control-prev').length) {
                 var directions = ['prev', 'next'];
-                for (var _i = 0, directions_1 = directions; _i < directions_1.length; _i++) {
-                    var direction = directions_1[_i];
+                var _loop_1 = function (direction) {
                     var link = document.createElement('a');
                     link.classList.add("carousel-control-" + direction);
-                    link.href = "#" + carousel.id;
-                    link.dataset.slide = direction;
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        jQuery("#" + carousel.id).carousel(direction);
+                    });
                     var icon = document.createElement('span');
                     icon.classList.add("carousel-control-" + direction + "-icon");
                     link.appendChild(icon);
                     carousel.appendChild(link);
+                };
+                for (var _i = 0, directions_1 = directions; _i < directions_1.length; _i++) {
+                    var direction = directions_1[_i];
+                    _loop_1(direction);
                 }
             }
             return carousel;
