@@ -43,8 +43,8 @@ define(['exports'], function (exports) {
       this.files = {};
       this.progress = {};
       this.images = locals.images;
-      console.log('+++ 1', locals.scope.ctrl.nthOfType);
-      console.log('+++ 2', locals.images, locals.scope.data.images);
+
+      console.log(this.images);
     }
 
     _createClass(PictureDialogController, [{

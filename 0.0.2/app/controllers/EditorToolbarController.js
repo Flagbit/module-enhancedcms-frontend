@@ -224,7 +224,9 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                     if (typeof currentEl.attributes !== 'undefined') {
                         var attributes = _jquery2.default.map(currentEl.attributes, function (item) {
                             var name = item.name;
-                            if (name.startsWith('ng-')) return name;
+                            if (name.startsWith('ng-')) {
+                                return name;
+                            }
                             if (name.startsWith('ecms-')) return name;
                             if (name.startsWith('cke-')) return name;
                             if (name.startsWith('data-cke-')) return name;

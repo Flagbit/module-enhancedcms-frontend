@@ -46,18 +46,7 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       this.$mdDialog = $mdDialog;
       this.$rootScope = $rootScope;
       this.$scope = $scope;
-
-      /*
-      if (!$scope.data.images) {
-        if ($scope.data.fallback_image) {
-          $scope.data.images = {
-            'xl': $scope.data.fallback_image
-          }
-        }
-      }
-      */
-
-      this.images = this.$scope.data.images || [];
+      this.$timeout = $timeout;
     }
 
     _createClass(PictureController, [{
@@ -68,7 +57,7 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
           clickOutsideToClose: true,
           parent: document.body,
           locals: {
-            images: this.$scope.data.images[this.nthOfType],
+            images: this.images,
             scope: this.$scope,
             rootScope: this.$rootScope
           },
@@ -80,21 +69,16 @@ define(['exports', './AbstractWidgetController.min.js', './PictureDialogControll
       key: '$onInit',
       value: function $onInit() {
         this.$element.dblclick(this.openDialog.bind(this));
+        var imageAttr = this.$element[0].getAttribute('images');
 
-        var widgetId = this.$scope.$parent.$parent.widgetId;
-        var pictureComponents = jQuery('#' + widgetId + ' picture-component');
-        var pictureComponent = this.$element.find('picture-component').first();
-        this.nthOfType = pictureComponents.index(pictureComponent);
-
-        if (!this.$scope.data.images) {
-          this.$scope.data.images = [];
-        }
-        console.log('$ID', this.$scope.$id);
-        console.log('BLA', this.$scope.data.images[this.nthOfType]);
-        if (this.$scope.data.fallback_image && !this.$scope.data.images[this.nthOfType]) {
-          this.$scope.data.images[this.nthOfType] = {
-            'xl': this.$scope.data.fallback_image
-          };
+        if (imageAttr && JSON.parse(imageAttr)) {
+          this.images = JSON.parse(imageAttr);
+        } else {
+          if (this.$scope.data.fallback_image && !this.images) {
+            this.images = {
+              xl: this.$scope.data.fallback_image
+            };
+          }
         }
       }
     }]);
