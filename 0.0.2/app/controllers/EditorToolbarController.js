@@ -207,7 +207,8 @@ define(['exports', 'jquery'], function (exports, _jquery) {
             value: function tidyUpElement(el) {
                 this.tidyUpCarousel(el);
                 el.find('.md-panel-outer-wrapper, .ecms-tidyup').remove();
-                el.find('*').not('iframe, iframe *').each(function (idx, currentEl) {
+                // el.find('*').not('iframe, iframe *').each((idx, currentEl) => {
+                el.find('*').each(function (idx, currentEl) {
                     var $currentEl = (0, _jquery2.default)(currentEl);
 
                     $currentEl.contents().filter(function (i, el) {
