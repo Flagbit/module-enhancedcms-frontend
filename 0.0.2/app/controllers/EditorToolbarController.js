@@ -208,14 +208,16 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 this.tidyUpCarousel(el);
                 el.find('.md-panel-outer-wrapper, .ecms-tidyup').remove();
                 // el.find('*').not('iframe, iframe *').each((idx, currentEl) => {
-                el.find('*').each(function (idx, currentEl) {
+                el.find('*').not('iframe *').each(function (idx, currentEl) {
                     var $currentEl = (0, _jquery2.default)(currentEl);
 
-                    $currentEl.contents().filter(function (i, el) {
-                        return el.nodeType == 8;
-                    }).each(function (i, e) {
-                        (0, _jquery2.default)(e).remove();
-                    });
+                    if (currentEl.nodeName !== 'IFRAME') {
+                        $currentEl.contents().filter(function (i, el) {
+                            return el.nodeType == 8;
+                        }).each(function (i, e) {
+                            (0, _jquery2.default)(e).remove();
+                        });
+                    }
 
                     if ($currentEl.hasClass('cke_image_resizer') || $currentEl.hasClass('cke_reset')) {
                         $currentEl.remove();
