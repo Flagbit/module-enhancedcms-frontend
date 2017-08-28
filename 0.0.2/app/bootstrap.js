@@ -30,8 +30,10 @@ define(['exports'], function (exports) {
   }();
 
   var STYLESHEETS = [window.ecmsConfig.baseUrl + '/css/styles.min.css'];
-  var BOOTSTRAP_TIMEOUT = 5000;
-  var ROOT_ELEMENT = document.getElementById('ecms-builder');
+  /*
+  const BOOTSTRAP_TIMEOUT = 5000;
+  const ROOT_ELEMENT = document.getElementById('ecms-builder');
+  */
 
   var EnhancedCMSBootstrap = function () {
     function EnhancedCMSBootstrap() {
@@ -39,12 +41,14 @@ define(['exports'], function (exports) {
 
       this.baseUrl = window.ecmsHost;
       this.loadCss();
-      this.checkForBootstrappedApplication().then(function (result) {
+      /*
+      this.checkForBootstrappedApplication().then((result) => {
         console.log('IUHUZGBN', result);
         if (!result) {
           angular.bootstrap(ROOT_ELEMENT, ['enhancedcms']);
         }
       });
+      */
     }
 
     _createClass(EnhancedCMSBootstrap, [{
