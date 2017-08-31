@@ -81,7 +81,7 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             _this.$element = $element;
 
             _this.lastSlide = $element.find('.carousel-item').last();
-            _this.insertAddSlideBtn(lastSlide);
+            _this.insertAddSlideBtn(_this.lastSlide);
 
             /*
             this.$scope.$on('stopProcess', () => {
