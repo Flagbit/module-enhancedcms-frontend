@@ -80,7 +80,7 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             _this.$scope = $scope;
             _this.$element = $element;
 
-            var lastSlide = $element.find('.carousel-item').last();
+            _this.lastSlide = $element.find('.carousel-item').last();
             _this.insertAddSlideBtn(lastSlide);
 
             /*
@@ -104,7 +104,7 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             key: 'addSlide',
             value: function addSlide() {
                 // console.log('ADD SLIDE');
-                var slide = lastSlide.clone();;
+                var slide = this.lastSlide.clone();;
                 // let slide = $.parseHTML(TEMPLATE_SLIDE);
                 (0, _jquery2.default)(slide).insertAfter(this.$element.find('.carousel-item').last());
                 /*
