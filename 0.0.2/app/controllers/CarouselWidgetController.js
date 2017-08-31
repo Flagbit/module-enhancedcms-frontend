@@ -104,7 +104,8 @@ define(['exports', './WidgetController.min.js', 'jquery', 'Holder'], function (e
             key: 'addSlide',
             value: function addSlide() {
                 // console.log('ADD SLIDE');
-                var slide = _jquery2.default.parseHTML(TEMPLATE_SLIDE);
+                var slide = lastSlide.clone();;
+                // let slide = $.parseHTML(TEMPLATE_SLIDE);
                 (0, _jquery2.default)(slide).insertAfter(this.$element.find('.carousel-item').last());
                 /*
                 let image = slide[0].getElementsByTagName('img')[0];
