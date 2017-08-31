@@ -136,7 +136,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                     var formattedWidget = _this3.formatWidgetHtml(html, _this3.$scope.widgetId);
                     _this3.$scope.$element.append(formattedWidget);
 
-                    var newElement = _this3.$compile(_this3.$scope.$element.prop('outerHTML'))(_this3.$scope);
+                    var newElement = _this3.$compile(_this3.$scope.$element[0].outerHTML)(_this3.$scope);
 
                     _this3.$scope.$element.replaceWith(newElement);
                     _this3.$scope.$element = newElement;
@@ -152,15 +152,39 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 return deferred.promise;
             }
         }, {
+            key: 'wrapWithLink',
+            value: function wrapWithLink(html) {
+                var dontWrapWithLinkSelectors = ['[ng-attr-class^="beyerdynamic-widget-references"]'];
+
+                var wrapWithLink = true;
+
+                var tmpNode = document.createElement('div');
+                tmpNode.innerHTML = html;
+
+                for (var i = 0; i < dontWrapWithLinkSelectors.length; i++) {
+                    var selector = dontWrapWithLinkSelectors[i];
+                    if (tmpNode.firstChild.matches(selector)) {
+                        wrapWithLink = false;
+                        break;
+                    }
+                }
+
+                return wrapWithLink;
+            }
+        }, {
             key: 'formatWidgetHtml',
             value: function formatWidgetHtml(html) {
                 var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-                var linkElement = (0, _jquery2.default)('<a />', {
-                    'ng-attr-href': '{[{data.widgetLink}]}',
-                    'class': 'ecms-widget-link',
-                    html: html
-                });
+                var linkElement = void 0;
+                if (this.wrapWithLink(html)) {
+                    linkElement = document.createElement('a');
+                    linkElement.setAttribute('ng-attr-href', '{[{data.widgetLink}]}');
+                    linkElement.classList.add('ecms-widget-link');
+                    linkElement.innerHTML = html;
+                } else {
+                    linkElement = html;
+                }
 
                 return (0, _jquery2.default)('<div/>', {
                     id: name + '_content',

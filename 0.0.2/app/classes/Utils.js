@@ -37,6 +37,8 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         };
     }();
 
+    if (!Element.prototype.matches) Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+
     var Widget = function () {
         function Widget() {
             _classCallCheck(this, Widget);
