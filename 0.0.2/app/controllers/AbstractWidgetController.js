@@ -496,7 +496,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'pictureToFront',
             value: function pictureToFront(e) {
-                this.$scope.$element.find('.widget-container').toggleClass('hide');
+                this.$scope.$element.find('.widget-container, .text').toggleClass('hide');
             }
         }]);
 

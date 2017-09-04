@@ -146,6 +146,17 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 });
             }
         }, {
+            key: 'tidyUpTileAnimated',
+            value: function tidyUpTileAnimated(el) {
+                var tiles = el.find('beyer-tile-animated');
+                tiles.each(function (index, el) {
+                    var tileContent = el.querySelector('ng-transclude').innerHTML;
+                    el.innerHTML = tileContent;
+                });
+                console.log('CLEANED UP TIEL ANIMATED', el);
+                return el;
+            }
+        }, {
             key: 'tidyUpBeyerButton',
             value: function tidyUpBeyerButton(el) {
                 var buttons = el.find('beyer-button');
@@ -278,6 +289,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el = this.tidyUpPictureComponent(el);
                 el = this.tidyUpWidgetProducts(el);
                 el = this.tidyUpWidgetReferences(el);
+                el = this.tidyUpTileAnimated(el);
                 var clonedEl = el.clone();
                 var cleanedEl = this.getCleanBuilderDOM(clonedEl);
                 this.tidyUpElement(cleanedEl);
