@@ -108,8 +108,9 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 // Add Timeout because we don't know when exactly the CKEditor is instantiaded
                 // -> if you want to try yourself, see EditorController.js:136
                 setTimeout(function () {
+                    console.log('COMPILE ANGULAR');
                     _this2.compileAngularComponents();
-                }, 1000);
+                }, 2000);
                 if (apply) {
                     this.$rootScope.$safeApply(this.$scope);
                 }
@@ -135,7 +136,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                     var hasUiElement = _this3.$scope.$element.find('.ecms-ui')[0];
                     var formattedWidget = _this3.formatWidgetHtml(html, _this3.$scope.widgetId);
                     _this3.$scope.$element.append(formattedWidget);
-
+                    console.log('COMPILE ANGULAR LOAD');
                     var newElement = _this3.$compile(_this3.$scope.$element[0].outerHTML)(_this3.$scope);
 
                     _this3.$scope.$element.replaceWith(newElement);
@@ -254,6 +255,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                     if (this.$scope.$element && this.$scope.$element.length > 0) {
                         this.$scope.toolbarInitialized = true;
                         this.getToolbarHtml().then(function (html) {
+                            console.log('COMPILE ANGULAR TOOLBAR');
                             html = _this5.$compile(html)(_this5.$scope);
                             _this5.$scope.$element.prepend(html);
                             //this.$scope.$element.html(this.$compile(this.$scope.$element.html())(this.$scope));
@@ -417,7 +419,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                         this.$scope.$element.find(comp).each(function (index, el) {
                             // only compile if not already compiled
                             // -> sometimes CKEditor is leaving the compiled component as it is???
-                            if (!el.classList.contains('ng-scope')) {
+                            if (!el.classList.contains('ng-isolate-scope') && !el.classList.contains('ng-scope')) {
                                 _this8.$compile(el)(_this8.$scope);
                             }
                         });
