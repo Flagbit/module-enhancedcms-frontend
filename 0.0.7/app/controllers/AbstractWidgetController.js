@@ -147,6 +147,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'wrapWithLink',
             value: function wrapWithLink(html) {
+                console.log('FOR ALEX', html);
                 var dontWrapWithLinkSelectors = ['[ng-attr-class^="beyerdynamic-widget-references"]'];
 
                 var wrapWithLink = true;
@@ -171,10 +172,12 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
 
                 var linkElement = void 0;
                 if (this.wrapWithLink(html)) {
+                    /*
                     linkElement = document.createElement('a');
                     linkElement.setAttribute('ng-attr-href', '{[{data.widgetLink}]}');
                     linkElement.classList.add('ecms-widget-link');
                     linkElement.innerHTML = html;
+                    */
                 } else {
                     linkElement = html;
                 }
