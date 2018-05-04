@@ -10,6 +10,7 @@ define(["require", "exports"], function (require, exports) {
                     var slides = carousel.querySelectorAll('.carousel-item');
                     this.buildDots(carousel, slides);
                     this.buildControls(carousel);
+                    this.attachClickHandler(slides);
                     this.initCarousel(slides);
                 }
             }
@@ -17,6 +18,18 @@ define(["require", "exports"], function (require, exports) {
         CarouselBootstrap.prototype.initCarousel = function (slides) {
             slides[0].classList.add('active');
             return slides[0];
+        };
+        CarouselBootstrap.prototype.attachClickHandler = function (slides) {
+            var openLinkHandler = function (href) { window.location.href = href; };
+            for (var i = 0, slide = void 0; (slide = slides[i]); i++) {
+                var button = slide.querySelector('beyer-button');
+                if (button) {
+                    var link = button.getAttribute('link');
+                    if (link) {
+                        slide.addEventListener('click', openLinkHandler.bind(this, link));
+                    }
+                }
+            }
         };
         CarouselBootstrap.prototype.buildDots = function (carousel, slides) {
             var dotsContainer = document.createElement('ol');

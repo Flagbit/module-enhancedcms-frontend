@@ -147,7 +147,6 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'wrapWithLink',
             value: function wrapWithLink(html) {
-                console.log('FOR ALEX', html);
                 var dontWrapWithLinkSelectors = ['[ng-attr-class^="beyerdynamic-widget-references"]'];
 
                 var wrapWithLink = true;
@@ -170,9 +169,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             value: function formatWidgetHtml(html) {
                 var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-                var linkElement = html;
-                this.wrapWithLink(html);
-                /*
+                var linkElement = void 0;
                 if (this.wrapWithLink(html)) {
                     linkElement = document.createElement('a');
                     linkElement.setAttribute('ng-attr-href', '{[{data.widgetLink}]}');
@@ -181,7 +178,6 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 } else {
                     linkElement = html;
                 }
-                */
 
                 return (0, _jquery2.default)('<div/>', {
                     id: name + '_content',
@@ -274,14 +270,8 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 this.$rootScope.$safeApply(this.$scope);
             }
         }, {
-            key: 'removeContentEditableAttr',
-            value: function removeContentEditableAttr() {
-                this.$scope.$element.find('[contenteditable]').removeAttr('contenteditable');
-            }
-        }, {
             key: 'removeToolbar',
             value: function removeToolbar() {
-                this.$scope.$element.find('.md-panel-outer-wrapper').remove();
                 this.$scope.$element.find('.ecms-widget-toolbar').remove();
                 this.$scope.toolbarInitialized = false;
                 this.$scope.toolbarVisible = false;
@@ -402,7 +392,6 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
         }, {
             key: 'beforePageSave',
             value: function beforePageSave() {
-                this.removeContentEditableAttr();
                 this.removeToolbar();
             }
         }, {
