@@ -193,6 +193,11 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 return this.deleteCustomComponentsContent('beyer-widget-category-products', el);
             }
         }, {
+            key: 'tidyUpBeyerAttributesComponent',
+            value: function tidyUpBeyerAttributesComponent(el) {
+                return this.deleteCustomComponentsContent('beyer-attributes', el);
+            }
+        }, {
             key: 'tidyUpPictureComponent',
             value: function tidyUpPictureComponent(el) {
                 return this.deleteCustomComponentsContent('picture-component', el);
@@ -286,6 +291,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 el = this.tidyUpBeyerButton(el);
                 el = this.tidyUpBeyerIcon(el);
                 el = this.tidyUpBeyerCategoryProducts(el);
+                el = this.tidyUpBeyerAttributesComponent(el);
                 el = this.tidyUpPictureComponent(el);
                 el = this.tidyUpWidgetProducts(el);
                 el = this.tidyUpWidgetReferences(el);
