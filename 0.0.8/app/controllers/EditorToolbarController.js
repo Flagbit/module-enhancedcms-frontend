@@ -203,7 +203,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         }, {
             key: 'tidyUpBeyerAttributesComponent',
             value: function tidyUpBeyerAttributesComponent(el) {
-                el = this.unwrapFromEcmsWidgetLink('beyer-attributes', el);
+                el = this.unwrapFromEcmsWidgetLink('beyer-attributes, div.attribute-filter', el);
                 return this.deleteCustomComponentsContent('beyer-attributes', el);
             }
         }, {
