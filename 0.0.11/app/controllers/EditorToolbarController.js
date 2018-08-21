@@ -186,6 +186,13 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 this.deleteClass(TAG, el);
             }
         }, {
+            key: 'tidyUpVideoBg',
+            value: function tidyUpVideoBg(el) {
+                var TAG = 'video-bg';
+                this.deleteHTMLContent(TAG, el);
+                this.deleteClass(TAG, el);
+            }
+        }, {
             key: 'tidyUpBeyerCategoryProducts',
             value: function tidyUpBeyerCategoryProducts(el) {
                 var TAG = 'beyer-widget-category-products';
@@ -309,7 +316,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 var el = (0, _jquery2.default)('#ecms-page-content');
                 this.removeUIElements(el);
 
-                var tidyUps = ['BeyerButton', 'BeyerIcon', 'BeyerCategoryProducts', 'BeyerAttributesComponent', 'PictureComponent', 'WidgetProducts', 'BeyerTileReference', 'TileAnimated', 'Carousel'];
+                var tidyUps = ['BeyerButton', 'BeyerIcon', 'BeyerCategoryProducts', 'BeyerAttributesComponent', 'PictureComponent', 'WidgetProducts', 'BeyerTileReference', 'TileAnimated', 'Carousel', 'VideoBg'];
                 for (var i = 0, name, func; name = tidyUps[i]; i++) {
                     func = 'tidyUp' + name;
                     if (func in this && typeof this[func] === 'function') {
