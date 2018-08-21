@@ -45,7 +45,7 @@ CKEDITOR.editorConfig = function( config ) {
 	}
 
 	config.extraPlugins = 'uploadimage,image2,fontawesome,buttonbeyer,iconbeyer';
-  config.colorButton_colors = 'ff5900,e1e6e1,a2a9a8,343d45,000000'
+  config.colorButton_colors = 'ff5900,e1e6e1,a2a9a8,343d45,000000,ffffff'
 
 	config.skin = 'office2013';
 	config.title = false;
