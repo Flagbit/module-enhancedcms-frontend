@@ -169,7 +169,8 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             value: function formatWidgetHtml(html) {
                 var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-                var linkElement = void 0;
+                /*
+                let linkElement
                 if (this.wrapWithLink(html)) {
                     linkElement = document.createElement('a');
                     linkElement.setAttribute('ng-attr-href', '{[{data.widgetLink}]}');
@@ -178,6 +179,8 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 } else {
                     linkElement = html;
                 }
+                */
+                linkElement = html;
 
                 return (0, _jquery2.default)('<div/>', {
                     id: name + '_content',
