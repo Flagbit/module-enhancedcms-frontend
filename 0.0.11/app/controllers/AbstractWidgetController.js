@@ -172,8 +172,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 var linkElement = void 0;
                 if (this.wrapWithLink(html)) {
                     linkElement = document.createElement('div');
-                    linkElement.setAttribute('fake-href', "{[{data.widgetLink}]}");
-                    linkElement.setAttribute('fake-click', "location.href = this.getAttribute('fake-href')");
+                    linkElement.setAttribute('fake-click', true);
                     linkElement.innerHTML = html;
                     /*
                     linkElement = document.createElement('a');
