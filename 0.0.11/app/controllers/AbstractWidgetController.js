@@ -170,17 +170,19 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
                 var linkElement = void 0;
-                /*
                 if (this.wrapWithLink(html)) {
+                    linkElement = document.createElement('div');
+                    linkElement.setAttribute('fake-click', "location.href = '{[{data.widgetLink}]}'");
+                    linkElement.innerHTML = html;
+                    /*
                     linkElement = document.createElement('a');
                     linkElement.setAttribute('ng-attr-href', '{[{data.widgetLink}]}');
                     linkElement.classList.add('ecms-widget-link');
                     linkElement.innerHTML = html;
+                    */
                 } else {
                     linkElement = html;
                 }
-                */
-                linkElement = html;
 
                 return (0, _jquery2.default)('<div/>', {
                     id: name + '_content',
