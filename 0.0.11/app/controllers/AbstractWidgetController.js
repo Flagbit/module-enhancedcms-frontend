@@ -172,7 +172,7 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 var linkElement = void 0;
                 if (this.wrapWithLink(html)) {
                     linkElement = document.createElement('div');
-                    linkElement.setAttribute('fake-click', true);
+                    linkElement.setAttribute('onclick', 'window.openWidgetLink(this)');
                     linkElement.innerHTML = html;
                     /*
                     linkElement = document.createElement('a');
