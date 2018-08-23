@@ -54,7 +54,8 @@ CKEDITOR.dialog.add( 'buttonbeyerDialog', function ( editor ) {
             label: 'Type',
             items: [
               ['raised'],
-              ['outline']
+              ['outline'],
+              ['outline-uppercase']
             ],
             validate: CKEDITOR.dialog.validate.notEmpty( "Type field cannot be empty." )
           },
@@ -64,10 +65,11 @@ CKEDITOR.dialog.add( 'buttonbeyerDialog', function ( editor ) {
             label: 'Color',
             items: [
               ['white'],
-              ['champagne'],
+              ['orange'],
               ['red'],
               ['green'],
-              ['yellow']
+              ['yellow'],
+              ['black']
             ],
             validate: CKEDITOR.dialog.validate.notEmpty( "Color field cannot be empty." )
           },
