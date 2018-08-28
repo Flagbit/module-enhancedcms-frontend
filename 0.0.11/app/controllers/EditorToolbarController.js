@@ -278,11 +278,12 @@ define(['exports', 'jquery'], function (exports, _jquery) {
             key: 'prepareVideoBg',
             value: function prepareVideoBg(el) {
                 console.log(el);
+                console.log(el.get(0).innerHTML);
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
                 console.log(videoEl);
-                var scope = angular.element(videoEl.get(0)).scope();
                 console.log(scope);
+                videoEl.attr('video-id', el.find('[video-id]').parents('.ecms-widget').data('widgetData').src);
             }
         }, {
             key: 'removeEditorElements',
