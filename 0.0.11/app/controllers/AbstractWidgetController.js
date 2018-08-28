@@ -85,12 +85,10 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 this.$scope.data = {};
 
                 if (this.$scope.$element.attr('data-widget-data')) {
-                    console.log('!!! set data from element', this.$scope.$element);
                     this.$scope.data = JSON.parse(this.$scope.$element.attr('data-widget-data'));
                 }
 
                 if (_jquery2.default.isEmptyObject(this.$scope.data)) {
-                    console.log('!!! set default data');
                     this.setDefaultData();
                 }
             }
