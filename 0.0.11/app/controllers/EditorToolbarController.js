@@ -283,6 +283,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 var videoEl = el.find(SELECTOR);
                 var youtubeId = el.find('[video-id]').parents('.ecms-widget').data('widgetData').src;
                 console.log(videoEl);
+                console.log('youtube id', youtubeId);
                 videoEl.attr('video-id', youtubeId);
             }
         }, {
