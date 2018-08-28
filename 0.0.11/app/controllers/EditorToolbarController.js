@@ -281,9 +281,9 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 console.log(el.get(0).innerHTML);
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
+                var youtubeId = el.find('[video-id]').parents('.ecms-widget').data('widgetData').src;
                 console.log(videoEl);
-                console.log(scope);
-                videoEl.attr('video-id', el.find('[video-id]').parents('.ecms-widget').data('widgetData').src);
+                videoEl.attr('video-id', youtubeId);
             }
         }, {
             key: 'removeEditorElements',
