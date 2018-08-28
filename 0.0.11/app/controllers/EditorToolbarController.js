@@ -279,8 +279,10 @@ define(['exports', 'jquery'], function (exports, _jquery) {
             value: function prepareVideoBg(el) {
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
-                var youtubeId = el.find('[video-id]').parents('.ecms-widget').data('widgetData').src;
-                videoEl.attr('video-id', "'" + youtubeId + "'");
+                if (videoEl.length) {
+                    var youtubeId = el.find('[video-id]').parents('.ecms-widget').data('widgetData').src;
+                    videoEl.attr('video-id', "'" + youtubeId + "'");
+                }
             }
         }, {
             key: 'removeEditorElements',
