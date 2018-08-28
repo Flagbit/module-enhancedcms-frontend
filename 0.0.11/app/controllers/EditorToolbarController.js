@@ -207,7 +207,8 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 // reset siblings (remove style)
                 resetEl.siblings().removeAttr('style');
                 // reset parent (remove style)
-                videoEl.parent().removeAttr('style');
+                resetEl.parent().removeAttr('style');
+                console.log(resetEl.html());
                 /*
                 const TAG = 'video-bg';
                 this.deleteHTMLContent(TAG, el);
