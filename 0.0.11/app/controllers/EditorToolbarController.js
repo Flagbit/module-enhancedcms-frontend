@@ -277,9 +277,11 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         }, {
             key: 'prepareVideoBg',
             value: function prepareVideoBg(el) {
+                console.log(el);
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
-                var scope = angular.element(videoEl).scope();
+                console.log(videoEl.html());
+                var scope = angular.element(videoEl.get(0)).scope();
                 console.log(scope);
             }
         }, {
