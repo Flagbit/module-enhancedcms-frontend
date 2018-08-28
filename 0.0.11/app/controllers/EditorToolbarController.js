@@ -284,7 +284,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 var youtubeId = el.find('[video-id]').parents('.ecms-widget').data('widgetData').src;
                 console.log(videoEl);
                 console.log('youtube id', youtubeId);
-                videoEl.attr('video-id', youtubeId);
+                videoEl.attr('video-id', "'" + youtubeId + "'");
                 console.log('attribute on element', videoEl.attr('video-id'));
             }
         }, {
