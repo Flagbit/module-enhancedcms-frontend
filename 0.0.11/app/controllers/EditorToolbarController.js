@@ -193,7 +193,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 var videoEl = el.find(SELECTOR);
                 // reset tag (rename tag, remove class, remove style)
                 var resetEl = angular.element(document.createElement('video-bg'));
-                resetEl.attr('video-id', videoEl.attr('video-id'));
+                resetEl.attr('video-id', videoEl.parent.attr('data-video-id'));
                 resetEl.attr('ratio', videoEl.attr('ratio'));
                 resetEl.attr('content-z-index', videoEl.attr('content-z-index'));
                 // copy content
