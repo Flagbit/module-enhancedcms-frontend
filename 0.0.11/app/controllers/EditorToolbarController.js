@@ -280,7 +280,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 console.log(el);
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
-                console.log(videoEl.html());
+                console.log(videoEl);
                 var scope = angular.element(videoEl.get(0)).scope();
                 console.log(scope);
             }
