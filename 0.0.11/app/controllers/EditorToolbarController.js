@@ -188,9 +188,30 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         }, {
             key: 'tidyUpVideoBg',
             value: function tidyUpVideoBg(el) {
-                var TAG = 'video-bg';
+                // get element
+                var SELECTOR = '[video-id]';
+                var videoEl = el.find(SELECTOR);
+                // reset tag (rename tag, remove class, remove style)
+                var resetEl = $(document.createElement('video-bg'));
+                resetEl.attr('video-id', videoEl.attr('video-id'));
+                resetEl.attr('ratio', videoEl.attr('ratio'));
+                resetEl.attr('content-z-index', videoEl.attr('content-z-index'));
+                // copy content
+                resetEl.html(videoEl.html());
+                // remove rendered element
+                resetEl.insertBefore(videoEl);
+                // ==> videoEl.parentNode.insertBefore(resetEl, videoEl);
+                videEl.remove();
+                // ==> videoEl.parentNode.removeChild(videoEl);
+                // reset siblings (remove style)
+                resetEl.siblings().removeAttr('style');
+                // reset parent (remove style)
+                videoEl.parent().removeAttr('style');
+                /*
+                const TAG = 'video-bg';
                 this.deleteHTMLContent(TAG, el);
                 this.deleteClass(TAG, el);
+                */
             }
         }, {
             key: 'tidyUpBeyerCategoryProducts',
