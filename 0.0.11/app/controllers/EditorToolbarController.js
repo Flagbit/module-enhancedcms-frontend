@@ -191,6 +191,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 // get element
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
+                console.log('#### videoEl', videoEl);
                 // reset tag (rename tag, remove class, remove style)
                 var resetEl = angular.element(document.createElement('video-bg'));
                 resetEl.attr('video-id', videoEl.attr('video-id'));
