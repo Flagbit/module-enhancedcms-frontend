@@ -198,9 +198,10 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 resetEl.attr('content-z-index', videoEl.attr('content-z-index'));
                 console.log(resetEl, videoEl);
                 // copy content
-                resetEl.html(videoEl.html());
+                // resetEl.html(videoEl.html());
                 // remove rendered element
                 resetEl.insertBefore(videoEl);
+                console.log('### resetEl', resetEl.html());
                 // ==> videoEl.parentNode.insertBefore(resetEl, videoEl);
                 videoEl.remove();
                 // ==> videoEl.parentNode.removeChild(videoEl);
@@ -208,7 +209,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 resetEl.siblings().removeAttr('style');
                 // reset parent (remove style)
                 resetEl.parent().removeAttr('style');
-                console.log(resetEl.html());
+                console.log('### el', el.html());
                 /*
                 const TAG = 'video-bg';
                 this.deleteHTMLContent(TAG, el);
