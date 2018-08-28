@@ -192,7 +192,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 var SELECTOR = '[video-id]';
                 var videoEl = el.find(SELECTOR);
                 // reset tag (rename tag, remove class, remove style)
-                var resetEl = $(document.createElement('video-bg'));
+                var resetEl = $('<video-bg></video-bg>');
                 resetEl.attr('video-id', videoEl.attr('video-id'));
                 resetEl.attr('ratio', videoEl.attr('ratio'));
                 resetEl.attr('content-z-index', videoEl.attr('content-z-index'));
