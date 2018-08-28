@@ -275,8 +275,17 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 });
             }
         }, {
+            key: 'prepareVideoBg',
+            value: function prepareVideoBg(el) {
+                var SELECTOR = '[video-id]';
+                var videoEl = el.find(SELECTOR);
+                var scope = angular.element(videoEl).scope();
+                console.log(scope);
+            }
+        }, {
             key: 'removeEditorElements',
             value: function removeEditorElements(el) {
+                this.prepareVideoBg(el);
                 el.find('.md-panel-outer-wrapper, .ecms-tidyup').remove();
                 // el.find('*').not('iframe, iframe *').each((idx, currentEl) => {
                 el.find('*').not('iframe *').each(function (idx, currentEl) {
