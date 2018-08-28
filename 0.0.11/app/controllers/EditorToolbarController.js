@@ -202,7 +202,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 // remove rendered element
                 resetEl.insertBefore(videoEl);
                 // ==> videoEl.parentNode.insertBefore(resetEl, videoEl);
-                videEl.remove();
+                videoEl.remove();
                 // ==> videoEl.parentNode.removeChild(videoEl);
                 // reset siblings (remove style)
                 resetEl.siblings().removeAttr('style');
