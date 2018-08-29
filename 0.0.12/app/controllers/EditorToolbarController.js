@@ -278,10 +278,33 @@ define(['exports', 'jquery'], function (exports, _jquery) {
             key: 'prepareVideoBg',
             value: function prepareVideoBg(el) {
                 var SELECTOR = '[video-id]';
-                var videoEl = el.find(SELECTOR);
-                if (videoEl.length) {
-                    var youtubeId = el.find('[video-id]').parents('.ecms-widget').data('widgetData').src;
-                    videoEl.attr('video-id', "'" + youtubeId + "'");
+                var videoEls = el.find(SELECTOR);
+                if (videoEls.length) {
+                    var _iteratorNormalCompletion = true;
+                    var _didIteratorError = false;
+                    var _iteratorError = undefined;
+
+                    try {
+                        for (var _iterator = videoEls[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                            var videoEl = _step.value;
+
+                            var youtubeId = videoEl.parents('.ecms-widget').data('widgetData').src;
+                            videoEl.attr('video-id', "'" + youtubeId + "'");
+                        }
+                    } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+                        } finally {
+                            if (_didIteratorError) {
+                                throw _iteratorError;
+                            }
+                        }
+                    }
                 }
             }
         }, {
