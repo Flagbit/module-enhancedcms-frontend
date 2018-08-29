@@ -288,7 +288,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                         for (var _iterator = videoEls[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                             var videoEl = _step.value;
 
-                            var youtubeId = videoEl.parents('.ecms-widget').data('widgetData').src;
+                            var youtubeId = angular.element(videoEl).parents('.ecms-widget').data('widgetData').src;
                             videoEl.attr('video-id', "'" + youtubeId + "'");
                         }
                     } catch (err) {
