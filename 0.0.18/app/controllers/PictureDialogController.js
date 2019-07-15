@@ -51,7 +51,6 @@ define(['exports'], function (exports) {
             this.images = locals.images;
             this.maxFileSize = 1048576;
             this.showWarning = false;
-            this.ignoreFileSize = false;
         }
 
         _createClass(PictureDialogController, [{
@@ -74,11 +73,13 @@ define(['exports'], function (exports) {
             value: function submitHandler() {
                 var _this = this;
 
+                var ignoreFileSize = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
                 if (Object.keys(this.files).length) {
                     var _loop = function _loop(size) {
                         var file = _this.files[size];
 
-                        if (!_this.ignoreFileSize && _this.files[size].size > _this.maxFileSize) {
+                        if (!ignoreFileSize && _this.files[size].size > _this.maxFileSize) {
                             _this.showWarning = true;
                             return {
                                 v: void 0
@@ -116,7 +117,7 @@ define(['exports'], function (exports) {
                         if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
                     }
 
-                    if (!this.showWarning || this.ignoreFileSize) {
+                    if (!this.showWarning || ignoreFileSize) {
                         this.hide();
                     }
                 }
@@ -124,11 +125,9 @@ define(['exports'], function (exports) {
         }, {
             key: 'closeWarning',
             value: function closeWarning(upload) {
-                this.ignoreFileSize = true;
                 this.showWarning = false;
                 if (upload) {
-                    this.submitHandler();
-                    this.ignoreFileSize = false;
+                    this.submitHandler(true);
                 }
             }
         }]);
