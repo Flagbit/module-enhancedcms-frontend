@@ -69,9 +69,9 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             this.$scope.toolbarChildren = false;
             this.$scope.dragHandle = true;
 
-            if (this.$scope.$element) {
-                this.$scope.$widget = this.$rootScope.findWidgetByElement(this.$scope.$element);
-            }
+            //if (this.$scope.$element) {
+            // this.$scope.$widget = this.$rootScope.findWidgetByElement(this.$scope.$element);
+            //}
 
             if (this.$scope.$element.hasClass('ecms-widget-initialize')) {
                 this.$timeout(function () {
@@ -119,10 +119,13 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
                 this.$scope.$emit('startProcess');
 
                 this.clearChildren();
-                this.$scope.$widget.getHtml().then(function (html) {
+
+                var widget = this.getWidget();
+
+                widget.getHtml().then(function (html) {
                     _this2.$scope.widgetId = 'ecms-widget-' + _UtilsMin2.default.generateWidgetId(10);
                     _this2.$scope.$element.attr('id', _this2.$scope.widgetId).attr('ng-click', 'ctrl.click($event)').attr('ng-attr-data-widget-data', '{[{data}]}');
-                    _this2.$scope.$element.addClass('ecms-widget').addClass('ecms-widget-' + _this2.$scope.$widget.getName());
+                    _this2.$scope.$element.addClass('ecms-widget').addClass('ecms-widget-' + widget.getName());
 
                     _this2.$scope.$element.hide();
                     _this2.$scope.$element.removeClass('ecms-widget-initialize');
@@ -219,8 +222,9 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             key: 'setDefaultData',
             value: function setDefaultData() {
                 console.log('### SET DEFAULT DATA');
-                if (this.$scope.$widget) {
-                    this.$scope.data = this.$scope.$widget.getDefaults();
+                var widget = this.getWidget();
+                if (widget) {
+                    this.$scope.data = widget.getDefaults();
                 }
 
                 this.$scope.data.contentClasses = this.$scope.defaultContentClasses;
@@ -521,6 +525,13 @@ define(['exports', 'jquery', '../classes/Utils.min.js'], function (exports, _jqu
             key: 'pictureToFront',
             value: function pictureToFront(e) {
                 this.$scope.$element.find('.widget-container, .text').toggleClass('hide');
+            }
+        }, {
+            key: 'getWidget',
+            value: function getWidget() {
+                this.$scope.$widget = this.$rootScope.findWidgetByElement(this.$scope.$element);
+
+                return this.$scope.$widget;
             }
         }]);
 
