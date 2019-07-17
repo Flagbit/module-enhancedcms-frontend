@@ -13,12 +13,6 @@ define(['exports', 'jquery'], function (exports, _jquery) {
         };
     }
 
-    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-        return typeof obj;
-    } : function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
@@ -362,14 +356,8 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                             $currentEl.removeAttr(item);
                         });
                     }
-                    var currentClassName = currentEl.className;
-                    if (typeof currentClassName !== 'undefined') {
-                        console.log(currentClassName);
-                        console.log(typeof currentClassName === 'undefined' ? 'undefined' : _typeof(currentClassName));
-                        if (typeof currentClassName !== 'string') {
-                            console.log('SUCCESSFUL!!!');
-                        }
 
+                    if (typeof currentEl.className !== 'undefined' && typeof currentEl.className === 'string') {
                         var regex = /\s(cke_.*?)(?=\s)/g;
                         currentEl.className = currentEl.className.replace(regex, '');
                         regex = /\s(ng-.*?)(?=\s)/g;
