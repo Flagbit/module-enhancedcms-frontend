@@ -191,6 +191,7 @@ define(['exports'], function (exports) {
 
                 var el = this.$scope.mdPanelRef.panelEl;
                 if (this.$scope.draggable) {
+                    el.draggable();
                     el.draggable('enable');
                 }
 
@@ -214,6 +215,7 @@ define(['exports'], function (exports) {
 
                 var el = this.$scope.mdPanelRef.panelEl;
                 if (this.$scope.draggable) {
+                    el.draggable();
                     el.draggable('disable');
                 }
 
