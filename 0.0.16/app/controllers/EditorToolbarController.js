@@ -358,10 +358,12 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                     }
 
                     if (typeof currentEl.className !== 'undefined') {
-                        var regex = /\s(cke_.*?)(?=\s)/g;
-                        currentEl.className = currentEl.className.replace(regex, '');
-                        regex = /\s(ng-.*?)(?=\s)/g;
-                        currentEl.className = currentEl.className.replace(regex, '');
+                        if (currentEl.className !== 'undefined') {
+                            var regex = /\s(cke_.*?)(?=\s)/g;
+                            currentEl.className = currentEl.className.replace(regex, '');
+                            regex = /\s(ng-.*?)(?=\s)/g;
+                            currentEl.className = currentEl.className.replace(regex, '');
+                        }
                     }
                 });
             }
