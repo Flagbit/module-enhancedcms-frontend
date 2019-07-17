@@ -285,8 +285,43 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                 });
             }
         }, {
+            key: 'prepareVideoBg',
+            value: function prepareVideoBg(el) {
+                var SELECTOR = '[video-id]';
+                var videoEls = el.find(SELECTOR);
+                if (videoEls.length) {
+                    var _iteratorNormalCompletion = true;
+                    var _didIteratorError = false;
+                    var _iteratorError = undefined;
+
+                    try {
+                        for (var _iterator = videoEls[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                            var videoEl = _step.value;
+
+                            console.log('CHECK CHECK', videoEl);
+                            var youtubeId = angular.element(videoEl).parents('.ecms-widget').data('widgetData').src;
+                            angular.element(videoEl).attr('video-id', "'" + youtubeId + "'");
+                        }
+                    } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+                        } finally {
+                            if (_didIteratorError) {
+                                throw _iteratorError;
+                            }
+                        }
+                    }
+                }
+            }
+        }, {
             key: 'removeEditorElements',
             value: function removeEditorElements(el) {
+                this.prepareVideoBg(el);
                 el.find('.md-panel-outer-wrapper, .ecms-tidyup').remove();
                 // el.find('*').not('iframe, iframe *').each((idx, currentEl) => {
                 el.find('*').not('iframe *').each(function (idx, currentEl) {
@@ -322,7 +357,7 @@ define(['exports', 'jquery'], function (exports, _jquery) {
                         });
                     }
 
-                    if (typeof currentEl.className !== 'undefined') {
+                    if (typeof currentEl.className !== 'undefined' && typeof currentEl.className === 'string') {
                         var regex = /\s(cke_.*?)(?=\s)/g;
                         currentEl.className = currentEl.className.replace(regex, '');
                         regex = /\s(ng-.*?)(?=\s)/g;

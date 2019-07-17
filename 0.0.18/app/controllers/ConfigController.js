@@ -191,12 +191,14 @@ define(['exports', 'jquery', '../classes/Utils.min.js', './PanelController.min.j
 
                 this.$scope.isWidgetConfigLoading = true;
 
-                if (!wScope.$widget) return;
+                var widget = this.getWidget(wScope);
+
+                if (!widget) return;
 
                 var fields = {};
 
-                if (!_jquery2.default.isEmptyObject(wScope.$widget.getConfig())) {
-                    _jquery2.default.extend(fields, wScope.$widget.getConfig());
+                if (!_jquery2.default.isEmptyObject(widget.getConfig())) {
+                    _jquery2.default.extend(fields, widget.getConfig());
                 }
 
                 fields = _jquery2.default.extend(fields, wScope.globalData.config);
@@ -403,14 +405,25 @@ define(['exports', 'jquery', '../classes/Utils.min.js', './PanelController.min.j
 
                 if (!text) {
                     text = this.$scope.title;
+                    var widget = this.getWidget(this.$scope.targetScope);
 
-                    if (this.$scope.targetScope.$widget && this.$scope.targetScope.$widget.getTitle()) {
-                        text = this.$scope.targetScope.$widget.getTitle();
+                    if (widget && widget.getTitle()) {
+                        text = widget.getTitle();
                         text = text.length < 15 ? text : text.substr(0, 15).trim() + '...';
                     }
                 }
 
                 return text;
+            }
+        }, {
+            key: 'getWidget',
+            value: function getWidget(scope) {
+
+                if (typeof scope.$widget === 'undefined') {
+                    scope.$widget = this.$rootScope.findWidgetByElement(scope.$element);
+                }
+
+                return scope.$widget;
             }
         }]);
 
